@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block navbar %}
+{{ super() }}
+{% include 'includes/_navbar.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="page-header">Welcome, {{ name }}</h1>
+          <h6>Admin Profile</h6>
+
+          <div class="row placeholders">
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Label</h4>
+              <span class="text-muted">Something else</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Label</h4>
+              <span class="text-muted">Something else</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Label</h4>
+              <span class="text-muted">Something else</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Label</h4>
+              <span class="text-muted">Something else</span>
+            </div>
+          </div>
+
+          <h2 class="sub-header">Account Management</h2>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Account No</th>
+                  <th>Full Name</th>
+                  <th>Password</th>
+                  <th>Email</th>
+                  <th>Account Type</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                  {% for user in users_list %}
+                  <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ user[1].get_full_name() }}</td>
+                    <td>{{ user[1].get_password() }}</td>
+                    <td>{{ user[1].get_email() }}</td>
+                    {% if user[1].get_account_type() == "A" %}
+                    <td>Admin</td>
+                    {% elif user[1].get_account_type() == "D" %}
+                    <td>Doctor</td>
+                    {% elif user[1].get_account_type() == "S" %}
+                    <td>staff</td>
+                    {% elif user[1].get_account_type() == "P" %}
+                    <td>Patient</td>
+                    {% endif %}
+                    <td><a href="#" class="btn btn-warning">Change</a></td>
+                    <td>
+                      <form action="{{url_for('delete_account', uid=user[0])}}" method="POST">
+                        <input type="submit" value="Delete" class="btn btn-danger"
+                          onclick="return confirm('Are you sure you want to delete {{user[1].get_full_name()}}s account?');">
+                      </form>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}

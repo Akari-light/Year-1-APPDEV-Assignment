@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+:root {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Libre Baskerville', serif;
+    height: 100vh;
+}
+
+a {
+    color: inherit;
+}
+
+/*Dashboard*/
+.breadcrumb {
+    padding: 12px 10px 12px 20px;
+    margin-bottom: 20px;
+    list-style: none;
+    border-radius: 0;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    border: #dddddd solid 1px;
+    background: #fff;
+}

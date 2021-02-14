@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block navbar %}
+{{ super() }}
+{% include 'includes/_navbar.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <form class="col-md-8 offset-2" method="POST" action="/register">
+                <h2> Please Sign Up</h2>
+                {{ form.hidden_tag() }}
+                {{ wtf.form_field(form.first_name) }}
+                {{ wtf.form_field(form.last_name) }}
+                {{ wtf.form_field(form.email) }}
+                {{ wtf.form_field(form.password) }}
+                {{ wtf.form_field(form.confirm) }}
+                {{ wtf.form_field(form.accept_tos) }}
+                <input type="submit" value="Register" class="btn btn-primary"/>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+

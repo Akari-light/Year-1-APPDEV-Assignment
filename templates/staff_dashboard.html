@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block navbar %}
+{% include 'includes/_admin_navbar.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+  <class="row">
+    <div class="header col-md-10 offset-md-1">
+      <h1 class="page-header">
+        Dashboard <small>Welcome {{ name }}</small>
+      </h1>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item"><a href="#">Staff</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Profile</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</div>
+{% endblock %}

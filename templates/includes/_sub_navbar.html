@@ -1,0 +1,90 @@
+<style>
+  .sub-navbar {
+    background: lightgray !important;
+    text-decoration: none;
+    padding: 15px 50px;
+    font-size: 12px;
+  }
+
+  ul li {
+    list-style: none;
+  }
+
+  ul.info-list{
+    color: #14193d;
+    margin-right: auto;
+  }
+
+  .info-list li {
+    padding: 0 10px;
+  }
+
+  .info-list li i {
+    margin: 0 5px;
+  }
+
+  .info-list li a{
+    text-decoration: none;
+    color: #4e4e51;
+  }
+
+  li a:hover{
+    text-decoration: none;
+    color: #5153ff;
+  }
+
+  /* Log In Section*/ 
+  .login-nav ul {
+    color: #14193d;
+    padding: 0 5px;
+  }
+
+  .login-nav li a {
+    margin: 0 10px;
+    font-weight: 400;
+    text-decoration: none;
+  }
+
+  [href="/register"] {
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 50px;
+    background-color: #5153ff;
+    transition: 0.3s;
+  }
+
+  [href="/register"]:hover {
+    color: #ffffff;
+    background-color: #262626; 
+    transition: 0.3s;
+  }
+
+  @media only screen and (max-width: 778px) {
+    .info-list {
+      display: none;
+    } 
+    .login-nav {
+      margin: auto;
+    }
+  }
+</style>
+
+<div class="container-fluid sub-navbar d-flex justify-content-between">
+  <ul class="list-group list-group-horizontal info-list">
+    <li class="">
+      <i class="fas fa-phone-alt"></i><b> Main Line:</b><a href="tel:+123-456-789"> (+65) 1234 5678</a> 
+    </li>
+    <li class="">
+      <i class="fas fa-phone-alt"></i><b> Support:</b><a href="mailto:support@peacefamilyclinic.com"> support@peacefamilyclinic.com</a> 
+    </li>
+  </ul>
+  <!-- Login section -->
+  <ul class="list-group list-group-horizontal login-nav">
+    <li>
+      <a href="/login">Log In</a>
+    </li>
+    <li>
+      <a href="/register">Register</a>
+    </li>
+  </ul>
+</div>

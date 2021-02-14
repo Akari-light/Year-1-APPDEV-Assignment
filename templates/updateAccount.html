@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+<div class="containter-fluid">
+  <div class="row">
+    <h1 class="display-4">Update Accounts</h1>
+
+    <form class="col-md-8 offset-2" method="POST" action="">
+      {{ form.hidden_tag() }}
+      {{ wtf.form_field(form.email) }}
+      {{ wtf.form_field(form.account_type) }}
+      <input type="submit" value="Submit" class="btn btn-primary" />
+    </form>
+  </div>
+</div>
+
+{% endblock %}
