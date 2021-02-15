@@ -17,6 +17,120 @@ a {
     color: inherit;
 }
 
+#hero {
+    padding-top: 185px;
+    background: #0f1635 url('/static/image/hero-bg-pattern.png') center no-repeat;
+    background-size: cover;
+}
+
+.hero-content {
+    color: #fff;
+    padding: 0 30px;
+}
+
+.hero-content p{
+    font-size: 16px;
+    line-height: 1.9em;
+    margin-bottom: 40px;
+    margin-top: 30px;
+    font-weight: 400;
+}
+
+.hero-content a, .hero-content a:hover{
+    text-decoration: none;
+    color: #ffff;
+}
+
+#call-to-action {
+    padding: 28px 0px 25px;
+    background-color: #5153ff;
+    color: #ffffff;
+    text-align: center;
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 1.3em;
+}
+
+#call-to-action span {
+    padding: 0 40px 0 10px;
+}
+
+#test {
+    height: 1000px;
+}
+
+/*Site Buttons*/
+.theme-btn {
+	display: inline-block;
+	margin-right: 20px;
+	padding: 10px 44px;
+	font-size: 14px;
+    line-height: 30px;
+	font-weight: 500;
+	text-transform: uppercase;
+	overflow: hidden;
+	border-radius: 50px;
+    border: 0;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+}
+
+.theme-btn:after{
+	content: "";
+	position: absolute;
+	height: 0%;
+	left: 50%;
+	top: 50%;
+	width: 150%;
+	z-index: -1;
+	-webkit-transition: all 0.75s ease 0s;
+	-moz-transition: all 0.75s ease 0s;
+	-o-transition: all 0.75s ease 0s;
+	transition: all 0.75s ease 0s;
+}
+
+.theme-btn:hover:after{
+	height: 500%;
+}
+
+.btn-style-one, .btn-style-two {
+    position: relative;
+    text-transform: capitalize;
+    transition: all 0.3s;
+    z-index: 1;
+}
+
+.btn-style-one {
+	background-color:  #5153ff;
+	color: #fff;
+}
+.btn-style-one:after {
+	background: #262626;
+	-moz-transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+	-ms-transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+	-webkit-transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+	transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+}
+
+.btn-style-two {
+    color: #14193d !important;
+	background-color:  #ffffff;
+}
+.btn-style-two:after {
+    color: #ffffff ;
+	background: #5153ff;
+	-moz-transform: translateX(-50%) translateY(-50%) rotate(25deg);
+	-ms-transform: translateX(-50%) translateY(-50%) rotate(25deg);
+	-webkit-transform: translateX(-50%) translateY(-50%) rotate(25deg);
+	transform: translateX(-50%) translateY(-50%) rotate(25deg);
+}
+
+.btn-style-two:hover {
+    color: #ffffff !important;
+}
+
 /*Dashboard*/
 .breadcrumb {
     padding: 12px 10px 12px 20px;

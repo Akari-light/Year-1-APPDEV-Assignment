@@ -102,7 +102,7 @@ def register():
 
 @app.route('/updateAccount/<uid>', methods=['GET', 'POST'])
 def update_account(uid):
-    form = formTest1(request.form)
+    form = AdminAccountUpdate(request.form)
     if form.validate_on_submit():
         account_dict = {}
         db = shelve.open('storage.db', 'w')
@@ -276,7 +276,7 @@ def create_patient(uid):
 
 @app.route('/updatePatient/<uid>/', methods=['GET', 'POST'])
 def update_patient(uid):
-    update_patient_information = formTest3(request.form)
+    update_patient_information = PatientAccountUpdate(request.form)
 
     if update_patient_information.validate_on_submit():
         account_dict = {}
