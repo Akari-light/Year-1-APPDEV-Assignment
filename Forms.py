@@ -33,3 +33,8 @@ class PatientAccountUpdate(FlaskForm):
     home_addr = StringField('Home Address:', validators=[Length(min=1, max=300), DataRequired()])
     telephone = StringField('Telephone Number:', validators=[Length(min=1, max=150), DataRequired()])
     medication = TextAreaField('Medication:', validators=[Optional()])
+
+class CreateMedForm(FlaskForm):
+    med_name = StringField('Medicine Name', [Length(min=1, max=150), DataRequired()])
+    quantity = IntegerField('Quantity', [DataRequired()])
+    med_type = RadioField('Medicine Type', [DataRequired()], choices=[('P', 'Pill'), ('L', 'Liquid (Bottles of 100ml)'), ('C', 'Cream')])

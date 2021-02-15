@@ -7,6 +7,7 @@ from datetime import timedelta
 from Forms import *
 from Accounts import *
 from Patient import *
+from Inventory import *
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
@@ -189,16 +190,50 @@ def patient_dashboard():
 @app.route('/doctor_dashboard')
 def doctor_dashboard():
     if verify_account_type('D'):
+        account_dict = {}
+        particulas_dict = {}
+        db = shelve.open('storage.db', 'r')
         
-        return render_template('doctor_dashboard.html', title='Doctor Profile')
+        try:
+            account_dict = db['Accounts']
+            particulas_dict = db['Account_particulas']
+        except:
+            print("Error in retrieving data from storage.db.")
+
+        db.close()
+
+        for uid, account in account_dict.items():
+            if session['session_id'] == uid:
+                doc_acc = account
+                acc_id = uid
+        #retrieve all patient acc and info 
+        doc_info = particulas_dict.get(acc_id)
+        return render_template('doctor_dashboard.html', name=doc_acc.get_full_name(), title='Doctor Profile', doc_acc=doc_acc, doc_info=doc_info, acc_id=acc_id)
     else:
         return redirect(url_for('login'))
 
 @app.route('/staff_dashboard')
 def staff_dashboard():
     if verify_account_type('S'):
+        account_dict = {}
+        particulas_dict = {}
+        db = shelve.open('storage.db', 'r')
         
-        return render_template('staff_dashboard.html', title='Doctor Profile')
+        try:
+            account_dict = db['Accounts']
+            particulas_dict = db['Account_particulas']
+        except:
+            print("Error in retrieving data from storage.db.")
+
+        db.close()
+
+        for uid, account in account_dict.items():
+            if session['session_id'] == uid:
+                staff_acc = account
+                acc_id = uid
+
+        staff_info = particulas_dict.get(acc_id)
+        return render_template('staff_dashboard.html', name=staff_acc.get_full_name(), title='Staff Profile', acc_id=acc_id)
     else:
         return redirect(url_for('login'))
 
@@ -257,7 +292,7 @@ def create_patient(uid):
 
     if create_patient_information.validate_on_submit():
         particulas_dict = {}
-        db = shelve.open('storage.db', 'r')
+        db = shelve.open('storage.db', 'c')
 
         try:
             particulas_dict = db['Account_particulas']
@@ -324,6 +359,64 @@ def update_patient(uid):
         return render_template('updatePatient.html', form=update_patient_information)
 
 #Inventory Management [IC: Xue Qi]
+@app.route('/medicine_storage')
+def medicine_storage():
+    inventories_dict = {}
+
+    try:
+        db = shelve.open('storage.db', 'r')
+        inventories_dict = db['Inventories']
+        db.close()
+    except:
+        print("Error in retrieving Inventories from storage.db")
+
+    inventories_list = []
+    for key in inventories_dict:
+        inventory = inventories_dict.get(key)
+        inventories_list.append(inventory)
+
+        
+    return render_template('medicine_storage.html',  title='Medicine Storage', inventories_list=inventories_list)
+
+@app.route('/createMed', methods=['GET', 'POST'])
+def create_med():
+    create_med_form = CreateMedForm(request.form)
+    if request.method == 'POST' and create_med_form.validate():
+        inventories_dict = {}
+        inventories_count_id = 0
+        db = shelve.open('storage.db', 'c')
+
+        try:
+            inventories_dict = db['Inventories']
+            inventories_count_id = int(db['inventories_count_id'])
+        except:
+            print("Error in retrieving Inventories from storage.db.")
+
+        inventory = Inventory(create_med_form.med_name.data, create_med_form.quantity.data, create_med_form.med_type.data)
+
+        inventories_count_id += 1
+        inventory.set_med_id(inventories_count_id)
+        db['inventories_count_id'] = inventories_count_id
+        inventories_dict[inventory.get_med_id()] = inventory
+        db['Inventories'] = inventories_dict
+
+        db.close()
+
+        return redirect(url_for('medicine_storage'))
+    return render_template('createMed.html', form=create_med_form)
+
+@app.route('/deleteInventories/<int:id>', methods=['POST'])
+def delete_inventories(id):
+    inventories_dict = {}
+    db = shelve.open('storage.db', 'w')
+    inventories_dict = db['Inventories']
+
+    inventory = inventories_dict.pop(id)
+
+    db['Inventories'] = inventories_dict
+    db.close()
+
+    return redirect(url_for('medicine_storage'))
 
 #Testing route
 @app.route('/testSite')

@@ -1,14 +1,22 @@
 {% extends "base.html" %}
 
 {% block navbar %}
-{% include 'includes/_admin_navbar.html' %}
+{% include 'includes/_dashboard_navbar.html' %}
+{% endblock %}
+
+{% block styles %}
+{{ super() }}
+<link href="{{url_for('static', filename='css/dashboard.css')}}" rel="stylesheet" type="text/css" />
 {% endblock %}
 
 {% block content %}
 <div class="container-fluid">
-  <class="row">
-    <div class="header col-md-10 offset-md-1">
-      <h1 class="page-header">
+  <div class="row">
+    <div class="side-nav col-md-2">
+      test
+    </div>
+    <div class="col-md-9">
+      <h1 class="">
         Dashboard <small>Welcome {{ name }}</small>
       </h1>
       <nav aria-label="breadcrumb">

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block navbar %}
-{% include 'includes/_admin_navbar.html' %}
+{% include 'includes/_dashboard_navbar.html' %}
 {% endblock %}
 
 {% block content %}
@@ -46,7 +46,7 @@
               {% elif user[1].get_account_type() == "D" %}
               <td>Doctor</td>
               {% elif user[1].get_account_type() == "S" %}
-              <td>staff</td>
+              <td>Staff</td>
               {% elif user[1].get_account_type() == "P" %}
               <td>Patient</td>
               {% endif %}
