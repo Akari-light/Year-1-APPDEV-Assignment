@@ -1,0 +1,115 @@
+
+{% extends "base.html" %}
+
+{% block navbar %}
+{% include 'includes/_dashboard_navbar.html' %}
+{% endblock %}
+
+{% block templates%}
+{% include 'templates/_patient_dashboard.html' %}
+{% endblock %}
+
+{% block styles %}
+{{ super() }}
+<link href="{{url_for('static', filename='css/dashboard.css')}}" rel="stylesheet" type="text/css" />
+<!-- TABLE STYLES-->
+<link href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="side-nav col-md-2 ">
+            <nav class="navbar">
+                <ul class="nav flex-column" id="main-menu">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/staff_dashboard"><i class="fa fa-dashboard"></i> Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/medicine_storage" class="active-menu"><i
+                                class="fas fa-prescription-bottle-alt"></i> Medicines</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/view_patient_information"><i class="fa fa-edit"></i>Patients</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa fa-fw fa-file"></i> ???</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-md-10 p-0">
+            <h1 class="page-header">
+                Patient Information
+            </h1>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item"><a href="#">Staff</a></li>
+          <li class="breadcrumb-item"><a href="#">Patient</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Information</li>
+        </ol>
+      </nav>
+            <div class="page-inner">
+                <a href="/createMed" class="btn btn-default btn-outline-secondary" style="margin: 15px;">Patient Info</a>
+                <!-- Medicine Table -->
+                <div id="medicine-panel" class="col-md-12">
+                    <!-- Advanced Tables -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Patient's Information Panel
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                    <tr>
+                                        <th>Full Name</th>
+                                        <th>Birth Certificate No.</th>
+                                        <th>Telephone Number</th>
+                                        <th>Medication</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <!--account_list, particulars_list-->
+                                    {% for account in account_list %}
+                                    <tr>
+                                        <td>{{ account[1].get_full_name() }}</td>
+                                        {% for patient_information in particulars_list  %}
+                                        {% if account[0] == patient_information[0]%}
+                                        <td>{{ patient_information[1].get_birth_cert() }}</td>
+                                        <td>{{ patient_information[1].get_telephone() }}</td>
+                                        <td>{{ patient_information[1].get_medication() }}</td>
+                                        {% endif %}
+                                        {% endfor %}
+                                        <td>
+                                            <form action="{{url_for('patient_dashboard', uid=acc_id)}}" method="POST">
+                                                <input type="submit" value="Update" class="btn btn-warning">
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--End Advanced Tables -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $('#dataTables-example').dataTable();
+  });
+</script>
+{% endblock %}

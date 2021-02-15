@@ -41,7 +41,7 @@ a {
     color: #ffff;
 }
 
-#call-to-action {
+#call-to-action-section {
     padding: 28px 0px 25px;
     background-color: #5153ff;
     color: #ffffff;
@@ -51,7 +51,7 @@ a {
     line-height: 1.3em;
 }
 
-#call-to-action span {
+#call-to-action-section span {
     padding: 0 40px 0 10px;
 }
 

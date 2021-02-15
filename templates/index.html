@@ -1,32 +1,71 @@
 {% extends "base.html" %}
 
 {% block navbar %}
-    {{ super() }}
-    {% include 'includes/_navbar.html' %}
+{{ super() }}
+{% include 'includes/_navbar.html' %}
 {% endblock %}
 
 {% block content %}
 <div class="container-fluid p-0">
-    <div id="hero" class="row no-gutters">
-      <div class="hero-img col-md-5 offset-md-1">
-        <img src="/static/image/hero-img.png">
-      </div>
-      <div class="hero-content col-md-4"> 
-        <h1>We are providing best and affordable health care</h1>
-        <p>We have built hospitals, arrange your doctor appointments and you will get your fast results. We have the latest technology to diagnose and treat you.</p>
-        <a href="#" class="theme-btn btn-style-one"><span>Book An Appointment</span></a>
-        <a href="#" class="theme-btn btn-style-two"><span>Our Services</span></a>
-      </div>
+  <div id="hero" class="row no-gutters">
+    <div class="hero-img col-md-5 offset-md-1">
+      <img src="/static/image/hero-img.png">
     </div>
+    <div class="hero-content col-md-4">
+      <h1>We are providing best and affordable health care</h1>
+      <p>We have built hospitals, arrange your doctor appointments and you will get your fast results. We have the
+        latest technology to diagnose and treat you.</p>
+      <a href="#" class="theme-btn btn-style-one"><span>Book An Appointment</span></a>
+      <a href="#" class="theme-btn btn-style-two"><span>Our Services</span></a>
+    </div>
+  </div>
 </div>
 
-<div id="call-to-action">
-  <i class="fas fa-phone-volume fa-lg" style="transform: rotate(320deg); padding-left: 15px;"></i><span>Call For An Appointment</span><a href="tel:+65-1234-5678">+65 1234 5678</a>
+<div id="call-to-action-section">
+  <i class="fas fa-phone-volume fa-lg" style="transform: rotate(320deg); padding-left: 15px;"></i><span>Call For An
+    Appointment</span><a href="tel:+65-1234-5678">+65 1234 5678</a>
 </div>
 
-<div class="container-fluid">
+<div id="service-section">
+  <div class="container-fluid">
     <div class="row">
-
+      <div class="card`">
+        
+      </div>
     </div>
+  </div>
 </div>
+
+<div id="about-section">
+  <div class="container-fluid">
+
+  </div>
+</div>
+
+<div id="service-section-two">
+  <div class="container-fluid">
+
+  </div>
+</div>
+
+<div id="team-section">
+  <div class="container-fluid">
+
+  </div>
+</div>
+
+<div id="appointment-section">
+  <div class="container-fluid">
+
+  </div>
+</div>
+
+<div id="news-section">
+  <div class="container-fluid">
+
+  </div>
+</div>
+
+
+
 {% endblock %}

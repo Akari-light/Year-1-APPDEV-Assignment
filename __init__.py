@@ -144,6 +144,7 @@ def delete_account(uid):
 
     return redirect(url_for('testSite'))
 
+#Dashbaord Management
 @app.route('/admin_dashboard')
 def admin_dashboard():
     if verify_account_type('A'):
@@ -284,6 +285,40 @@ def account_id_generator():
         uid = uuid.uuid4()
         if uid not in account_dict.keys():
             return uid
+
+@app.route('/view_patient_information')
+def view_patient_information():
+    account_dict = {}
+    particulars_dict = {}
+    db = shelve.open('storage.db', 'r')
+
+    try:
+        account_dict = db['Accounts']
+        particulars_dict= db['Account_particulas']
+    except:
+        print("Error in retrieving P from storage.db")
+
+    db.close()
+
+    account_list = []
+    particulars_list = []
+
+    patient_uid = []
+
+    #Get a list of all patient accounts (omit other account type)
+    for uid, account in account_dict.items():
+        if account.get_account_type() == 'P':
+            patient_uid.append(uid)
+            patient_acc = [uid, account]
+            account_list.append(patient_acc)
+
+    #Get a list of all pateint's information
+    for uid, particulars in particulars_dict.items():
+        if uid in patient_uid:
+            patient_particulars = [uid, particulars]
+            particulars_list.append(patient_particulars)
+
+    return render_template('view_patient_information.html',  title='Patient Informations', account_list=account_list, particulars_list=particulars_list)
 
 #Patient Information [IC: Poh Loon]
 @app.route('/createPatient/<uid>', methods=['GET', 'POST'])
