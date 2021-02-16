@@ -13,7 +13,7 @@ class RegistrationForm(FlaskForm):
     email = StringField('Email Address', validators=[InputRequired(), email("Email is invalid or already taken")])
     password = PasswordField('Password', validators=[InputRequired(), EqualTo('confirm', message='Passwords must match'), Length(min=4, max=80)])
     confirm = PasswordField('Repeat Password')
-    accept_tos = BooleanField('I accept the TOS', validators=[DataRequired()])
+    accept_tos = BooleanField('I agree the user agreement and Terms & Conditions', validators=[DataRequired()])
 
 class PatientInformationForm(FlaskForm):
     birth_cert = StringField('Birth Certificate:', validators=[Length(min=1, max=150), DataRequired()])

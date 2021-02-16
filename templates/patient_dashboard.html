@@ -3,7 +3,7 @@
 {% block navbar %}
 {% include 'includes/_dashboard_navbar.html' %}
 {% endblock %}
-<!--patient_acc=patient_acc, patient_info=patient_info, acc_id=acc_id) -->
+
 {% block content %}
 <div class="container-fluid">
   <div class="row">
@@ -11,7 +11,7 @@
       <h1 class="page-header">
         Dashboard <small>Welcome {{ name }}</small>
       </h1>
-      <nav aria-label="breadcrumb">
+      <nav id="dashboard-breadcrumb" aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="#">Home</a></li>
           <li class="breadcrumb-item"><a href="#">Patient</a></li>
