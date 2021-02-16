@@ -12,15 +12,24 @@
       <form class="col-md-8 offset-2" method="POST" action="">
         <h1 class="display-4">Please Fill in your Information</h1>
         {{ form.hidden_tag() }}
-        {{ wtf.form_field(form.birth_cert) }}
-        {{ wtf.form_field(form.home_addr) }}
-        {{ wtf.form_field(form.telephone) }}
+        {{ wtf.form_field(form.nric) }}
+        {{ wtf.form_field(form.address) }}
+        {{ wtf.form_field(form.postal_code) }}
+        {{ wtf.form_field(form.date_of_birth) }}
+        {{ wtf.form_field(form.contact_no) }}
+        {{ wtf.form_field(form.gender) }}
+        {{ wtf.form_field(form.race) }}
+        {{ wtf.form_field(form.nationality) }}
         {{ wtf.form_field(form.medication) }}
         <input type="submit" value="Submit" class="btn btn-primary"/>
       </form>
     </div>
   </div>
 {% endblock %}
+
+
+
+        
 
 
 

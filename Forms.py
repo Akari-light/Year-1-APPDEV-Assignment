@@ -1,4 +1,5 @@
 from wtforms import StringField, PasswordField, BooleanField, SelectField, TextAreaField, RadioField, IntegerField
+from wtforms.fields.html5 import IntegerField, DateField
 from wtforms.validators import *
 from flask_wtf import FlaskForm
 
@@ -15,10 +16,16 @@ class RegistrationForm(FlaskForm):
     confirm = PasswordField('Repeat Password')
     accept_tos = BooleanField('I agree the user agreement and Terms & Conditions', validators=[DataRequired()])
 
+        
 class PatientInformationForm(FlaskForm):
-    birth_cert = StringField('Birth Certificate:', validators=[Length(min=1, max=150), DataRequired()])
-    home_addr = StringField('Home Address:', validators=[Length(min=1, max=300), DataRequired()])
-    telephone = StringField('Telephone Number:', validators=[Length(min=1, max=150), DataRequired()])
+    nric = StringField('Birth Certificate:', validators=[Length(min=1, max=150), DataRequired()])
+    address = StringField('Home Address:', validators=[Length(min=1, max=300), DataRequired()])
+    postal_code = IntegerField('Postal Code:', validators=[Length(min=6, max=6), DataRequired()])
+    date_of_birth = DateField('Date Of Birth:', validators=[DataRequired()], format='%Y-%m-%d')
+    contact_no = IntegerField('Contact Number:', validators=[Length(min=8, max=8), DataRequired()])
+    gender = SelectField('Account Type', validators=[DataRequired()], choices=[('M', 'Male'), ('F', 'Female')])
+    race = SelectField('Account Type', validators=[DataRequired()], choices=[('C', 'Chinese'), ('M', 'Malay'), ('I', 'Indian'), ('O', 'Others')])
+    nationality = SelectField('Account Type', validators=[DataRequired()], choices=[('S', 'Singaporean'), ('PR', 'Singapore PR'), ('F', 'Foreigner')])
     medication = TextAreaField('Medication:', validators=[Optional()])
 
 class AdminAccountUpdate(FlaskForm):

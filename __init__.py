@@ -24,7 +24,7 @@ def faq():
     return render_template("faq.html", title='FAQ')
 
 #Account Management [IC: Arvin]
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/login', methods=['GET', 'POST']) #Add a proper promt when fail to log in (INCOMPLETE)
 def login():
     #Check if there is an existing session
     if "session_id" in session:
@@ -103,8 +103,8 @@ def register():
     
     return render_template('register.html', form=form, title='Registration')
 
-@app.route('/updateAccount/<uid>', methods=['GET', 'POST'])
-def update_account(uid):
+@app.route('/edit_account/<uid>', methods=['GET', 'POST']) #Change to Site model at admin_dashboard (INCOMPLETE)
+def edit_account(uid):
     form = AdminAccountUpdate(request.form)
     if form.validate_on_submit():
         account_dict = {}
@@ -129,7 +129,7 @@ def update_account(uid):
         form.email.data = usr_account.get_email()
         form.account_type.data = usr_account.get_account_type()
 
-        return render_template('updateAccount.html', form=form, uid=uid)
+        return render_template('Target_site_model', form=form, uid=uid)
 
 @app.route('/deleteAccount/<uid>', methods=['POST'])
 def delete_account(uid):
@@ -179,11 +179,13 @@ def patient_dashboard():
 
         db.close()
 
+        #Retrive the account of the patient.
         for uid, account in account_dict.items():
             if session['session_id'] == uid:
                 patient_acc = account
                 acc_id = uid
 
+        #Retrive patients's personal information.
         patient_info = particulas_dict.get(acc_id)
         
         return render_template('patient_dashboard.html', name=patient_acc.get_full_name(), title='Patient Profile', patient_acc=patient_acc, patient_info=patient_info, acc_id=acc_id)
@@ -205,12 +207,15 @@ def doctor_dashboard():
 
         db.close()
 
+        #Retrive the account of the doctor.
         for uid, account in account_dict.items():
             if session['session_id'] == uid:
                 doc_acc = account
                 acc_id = uid
-        #retrieve all patient acc and info 
+
+        #Retrive doctor's personal information.
         doc_info = particulas_dict.get(acc_id)
+
         return render_template('doctor_dashboard.html', name=doc_acc.get_full_name(), title='Doctor Profile', doc_acc=doc_acc, doc_info=doc_info, acc_id=acc_id)
     else:
         return redirect(url_for('login'))
@@ -230,12 +235,15 @@ def staff_dashboard():
 
         db.close()
 
+        #Retrive the account of the staff.
         for uid, account in account_dict.items():
             if session['session_id'] == uid:
                 staff_acc = account
                 acc_id = uid
 
+        #Retrive staff's personal information.
         staff_info = particulas_dict.get(acc_id)
+        
         return render_template('staff_dashboard.html', name=staff_acc.get_full_name(), title='Staff Profile', acc_id=acc_id)
     else:
         return redirect(url_for('login'))
@@ -335,8 +343,8 @@ def create_patient(uid):
             particulas_dict = db['Account_particulas']
         except:
             print("Error in retrieving Account_particulas from storage.db.")
-
-        patient = Patient(create_patient_information.birth_cert.data, create_patient_information.home_addr.data, create_patient_information.telephone.data, create_patient_information.medication.data)
+        # nric address postal_code date_of_birth contact_no gender race nationality medication
+        patient = User(create_patient_information.nric.data, create_patient_information.address.data, create_patient_information.postal_code.data, create_patient_information.date_of_birth.data, create_patient_information.contact_no.data, create_patient_information.gender.data, create_patient_information.race.data, create_patient_information.nationality.data, create_patient_information.medication)
         particulas_dict[uuid.UUID(uid)] = patient
         db['Account_particulas'] = particulas_dict
 
@@ -408,6 +416,7 @@ def medicine_storage():
         print("Error in retrieving Inventories from storage.db")
 
     inventories_list = []
+
     for key in inventories_dict:
         inventory = inventories_dict.get(key)
         inventories_list.append(inventory)

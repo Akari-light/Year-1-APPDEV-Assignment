@@ -46,7 +46,7 @@ class Account():
 
 #### USER CLASSES ####
 # Shelve -> Account_particulas || {UUID: User_Information}
-class Users:
+class User:
     def __init__(self, nric, address, postal_code, date_of_birth, contact_no, gender, race, nationality, medication = 'No Records', appointment_id = None):
         self.__nric = nric
         self.__address = address
