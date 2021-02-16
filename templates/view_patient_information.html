@@ -50,8 +50,6 @@
                 </ol>
             </nav>
             <div class="page-inner">
-                <a href="/createMed" class="btn btn-default btn-outline-secondary" style="margin: 15px;">Patient
-                    Info</a>
                 <!-- Medicine Table -->
                 <div id="medicine-panel" class="col-md-12">
                     <!-- Advanced Tables -->
@@ -78,11 +76,17 @@
                                         <tr>
                                             <td>{{ account[1].get_full_name() }}</td>
                                             {% for patient_information in particulars_list  %}
-                                            {% if account[0] == patient_information[0]%}
-                                            <td>{{ patient_information[1].get_birth_cert() }}</td>
-                                            <td>{{ patient_information[1].get_telephone() }}</td>
-                                            <td>{{ patient_information[1].get_medication() }}</td>
-                                            {% endif %}
+                                                {% if account[0] == patient_information[0]%}
+                                                    {% if patient_information[1] != None %}                                                    
+                                                        <td>{{ patient_information[1].get_birth_cert() }}</td>
+                                                        <td>{{ patient_information[1].get_telephone() }}</td>
+                                                        <td>{{ patient_information[1].get_medication() }}</td>
+                                                    {% else %}
+                                                        <td colspan="3" style="">No Information Given</td>
+                                                        <td style="display: none;"></td>
+                                                        <td style="display: none;"></td>
+                                                    {% endif %}
+                                                {% endif %}
                                             {% endfor %}
                                             <td>
                                                 <form action="{{url_for('patient_dashboard', uid=acc_id)}}"

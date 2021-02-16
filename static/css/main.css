@@ -10,6 +10,7 @@
 
 body {
     font-family: 'Libre Baskerville', serif;
+    background-color: white;
     height: 100vh;
 }
 
@@ -27,9 +28,9 @@ a:visited {
 }
 
 /*** 
-====================================================================
+========================================
     Index page
-====================================================================
+========================================
  ***/
 
 /* Hero Section */
@@ -65,10 +66,6 @@ a:visited {
 
 #call-to-action-section span {
     padding: 0 40px 0 10px;
-}
-
-#test {
-    height: 1000px;
 }
 
 /* Service Section */
@@ -238,9 +235,9 @@ a:visited {
 
 
 /*** 
-====================================================================
+========================================
     Log In / Sign Up
-====================================================================
+========================================
  ***/
 #page-title {
     position: relative;
@@ -363,6 +360,12 @@ a:visited {
     display: inline-block;
     text-decoration: underline;
 }
+
+/*** 
+========================================
+    Theme Settings
+========================================
+ ***/
 
 /* Checkbox */
 .styled-form .checkbox {
@@ -487,16 +490,4 @@ a:visited {
     content: '';
     display: block;
     background: url(/static/image/dott.png) no-repeat;
-}
-
-/*Dashboard*/
-#dashboard-breadcrumb .breadcrumb {
-    padding: 12px 10px 12px 20px;
-    margin-bottom: 20px;
-    list-style: none;
-    border-radius: 0;
-    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
-    border: #dddddd solid 1px;
-    background: #fff;
 }

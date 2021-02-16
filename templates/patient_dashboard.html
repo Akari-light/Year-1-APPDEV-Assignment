@@ -4,10 +4,37 @@
 {% include 'includes/_dashboard_navbar.html' %}
 {% endblock %}
 
+
+{% block styles %}
+{{ super() }}
+<link href="{{url_for('static', filename='css/dashboard.css')}}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
 {% block content %}
 <div class="container-fluid">
   <div class="row">
-    <div class="header col-md-10 offset-md-1">
+    <!-- Navbar -->
+    <div class="side-nav col-md-2 ">
+      <nav class="navbar">
+        <ul class="nav flex-column" id="main-menu">
+          <li class="nav-item">
+            <a class="nav-link active" href="#"><i class="fa fa-dashboard"></i> Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" class="active-menu"><i
+                class="fas fa-prescription-bottle-alt"></i> Appointment</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="fa fa-edit"></i>Patients</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="fa fa-fw fa-file"></i> ???</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <!-- Content -->
+    <div class="col-md-10 p-0">
       <h1 class="page-header">
         Dashboard <small>Welcome {{ name }}</small>
       </h1>
@@ -18,43 +45,40 @@
           <li class="breadcrumb-item active" aria-current="page">Profile</li>
         </ol>
       </nav>
-    </div>
-    <div class="col-md-8 offset-md-2">
-      <h2 class="sub-header">My Profile</h2>
-
       <div class="table-responsive">
         {% if patient_info == None %}
-            <h6>No info </h6>
-            <a href="/createPatient/{{ acc_id }}" class="btn btn-default btn-outline-secondary" style="margin: 5px;">Update my personal informations</a>
+        <h6>No info </h6>
+        <a href="/createPatient/{{ acc_id }}" class="btn btn-default btn-outline-secondary" style="margin: 5px;">Update
+          my personal informations</a>
         {% else %}
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>Full Name</th>
-                <th>Email</th>  
-                <th>Birth Certificate No.</th>
-                <th>Home Address</th>
-                <th>Telephone Number</th>
-                <th>Medication</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{{ patient_acc.get_full_name() }}</td>
-                <td>{{ patient_acc.get_email() }}</td>
-                <td>{{ patient_info.get_birth_cert() }}</td>
-                <td>{{ patient_info.get_home_addr() }}</td>
-                <td>{{ patient_info.get_telephone() }}</td>
-                <td>{{ patient_info.get_medication() }}</td>
-                <td>
-                  <form action="{{url_for('update_patient', uid=acc_id)}}" method="POST">
-                    <input type="submit" value="Update" class="btn btn-warning">
-                  </form>
-                </td>
-              </tr>
-            </tbody>
-          </table>   
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Full Name</th>
+              <th>Email</th>
+              <th>Birth Certificate No.</th>
+              <th>Home Address</th>
+              <th>Telephone Number</th>
+              <th>Medication</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ patient_acc.get_full_name() }}</td>
+              <td>{{ patient_acc.get_email() }}</td>
+              <td>{{ patient_info.get_birth_cert() }}</td>
+              <td>{{ patient_info.get_home_addr() }}</td>
+              <td>{{ patient_info.get_telephone() }}</td>
+              <td>{{ patient_info.get_medication() }}</td>
+              <td>
+                <form action="{{url_for('update_patient', uid=acc_id)}}" method="POST">
+                  <input type="submit" value="Update" class="btn btn-warning">
+                </form>
+              </td>
+            </tr>
+          </tbody>
+        </table>
         {% endif %}
       </div>
     </div>

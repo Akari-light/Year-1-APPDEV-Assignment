@@ -1,4 +1,18 @@
-.side-nav {
+/*** 
+========================================
+    Navbar
+========================================
+ ***/
+.navbar-header {
+    width: 100%;
+}
+
+/*** 
+========================================
+    Site Content
+========================================
+ ***/
+#side-nav {
     background-color: grey;
     height: 100vh;
 }
@@ -34,4 +48,39 @@
 .panel-body {
     background: #FFFFFF;
     padding: 15px;
+}
+
+#dashboard-breadcrumb .breadcrumb {
+    padding: 12px 10px 12px 20px;
+    margin-bottom: 20px;
+    list-style: none;
+    border-radius: 0;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    border: #dddddd solid 1px;
+    background: #fff;
+}
+
+
+/*** 
+========================================
+    Media Query
+========================================
+ ***/
+@media only screen and (min-width: 992px) {
+    #side-nav {
+        display: block;
+    }
+
+}
+
+@media only screen and (max-width: 991px) {
+    #side-nav {
+        display: none;
+    }
+
+    .dropdown-menu-right {
+        right: auto;
+        left: 0;
+    }
 }

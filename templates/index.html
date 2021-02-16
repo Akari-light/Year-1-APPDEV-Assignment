@@ -124,7 +124,37 @@
 
   </div>
 </div>
+{% endblock %}
 
-
-
+{% block scripts %}
+{{ super() }}
+<script>
+  function NavbarCollapse() {
+    if (document.getElementById("navbar-toggler-icon").getAttribute("aria-expanded") == "true") {
+      setTimeout(function () {
+        document.body.style.backgroundColor = "white";
+        $("#hero").show();
+        $("#call-to-action-section").show();
+        $("#service-section").show();
+        $("#about-section").show();
+        $("#service-section-two").show();
+        $("#team-section").show();
+        $("#appointment-section").show();
+        $("#news-section").show();
+        $("#footer").show();
+      }, 300);
+    } else {      
+      document.body.style.backgroundColor = "black";
+      $("#hero").hide();
+      $("#call-to-action-section").hide();
+      $("#service-section").hide();
+      $("#about-section").hide();
+      $("#service-section-two").hide();
+      $("#team-section").hide();
+      $("#appointment-section").hide();
+      $("#news-section").hide();
+      $("#footer").hide();
+    }
+  };
+</script>
 {% endblock %}
