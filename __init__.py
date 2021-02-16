@@ -5,9 +5,7 @@ from flask import *
 from flask_bootstrap import Bootstrap
 from datetime import timedelta
 from Forms import *
-from Accounts import *
-from Patient import *
-from Inventory import *
+from Site_Artifacts import *
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
