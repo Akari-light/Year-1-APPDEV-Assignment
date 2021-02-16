@@ -1,0 +1,285 @@
+{% extends "base.html" %}
+
+{% block navbar %}
+{{ super() }}
+{% include 'includes/_navbar.html' %}
+{% endblock %}
+
+{% block content %}
+<div id="page-title" style="background-image: url(/static/image/faq.jpg)">
+	<div class="pattern-layer" style="background-image: url(/static/image/pattern-1.png)"></div>
+	<div class="container">
+		<h1>FAQs</h1>
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="/">Home</a></li>
+				<li class="breadcrumb-item">FAQ</li>
+			</ol>
+		</nav>
+	</div>
+</div>
+
+<div id="faq-page-section">
+	<div class="container">
+		<div class="sec-title centered">
+			<h2>Frequently Asked Questions</h2>
+			<div class="text">Replenish him third creature and meat most of the blessed <br> void a fruit gathered.
+			</div>
+		</div>
+
+		<div class="inner-container">
+			<div class="row">
+				<!-- Left Accordian Box -->
+				<div class="col-lg-6 col-md-12 col-sm-12">
+					<div id="left-accordion" class="accordion-box">
+						<div class="card">
+							<div class="btn btn-link" id="left-headingOne" data-toggle="collapse"
+								 data-target="#left-collapseOne" aria-expanded="true" aria-controls="left-collapseOne">
+								<div class="icon-outer">
+									<span class="icon icon-plus fa fa-plus"></span>
+									<span class="icon icon-minus fa fa-minus"></span>
+								</div>
+								Lorem Ipsum is simply dummy text?
+							</div>
+							<div id="left-collapseOne" class="collapse show" aria-labelledby="left-headingOne"
+								 data-parent="#left-accordion">
+								<div class="card-body">
+									<div class="accordian-text">
+										Lorem ipsum dolor sit amet, consectetur adipisicing
+										elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+										ad minim veniam, quis nostrud exercitation ullamco.
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="btn btn-link" id="left-headingTwo" data-toggle="collapse"
+								 data-target="#left-collapseTwo" aria-expanded="true" aria-controls="left-collapseTwo">
+								<div class="icon-outer">
+									<span class="icon icon-plus fa fa-plus"></span>
+									<span class="icon icon-minus fa fa-minus"></span>
+								</div>
+								Lorem Ipsum is simply dummy text?
+							</div>
+							<div id="left-collapseTwo" class="collapse" aria-labelledby="left-headingTwo"
+								 data-parent="#left-accordion">
+								<div class="card-body">
+									<div class="card-body">
+										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+										incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+										nostrud exercitation ullamco.
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Right Accordian Box -->
+				<div class="col-lg-6 col-md-12 col-sm-12">
+					<div id="right-accordion" class="accordion-box">
+						<div class="card">
+							<div class="btn btn-link" id="right-headingOne" data-toggle="collapse"
+								 data-target="#right-collapseOne" aria-expanded="true" aria-controls="right-collapseOne">
+								<div class="icon-outer">
+									<span class="icon icon-plus fa fa-plus"></span>
+									<span class="icon icon-minus fa fa-minus"></span>
+								</div>
+								Lorem Ipsum is simply dummy text?
+							</div>
+							<div id="right-collapseOne" class="collapse" aria-labelledby="right-headingOne"
+								 data-parent="#right-accordion">
+								<div class="card-body">
+									<div class="accordian-text">
+										Lorem ipsum dolor sit amet, consectetur adipisicing
+										elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+										ad minim veniam, quis nostrud exercitation ullamco.
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="btn btn-link" id="right-headingTwo" data-toggle="collapse"
+								 data-target="#right-collapseTwo" aria-expanded="true" aria-controls="right-collapseTwo">
+								<div class="icon-outer">
+									<span class="icon icon-plus fa fa-plus"></span>
+									<span class="icon icon-minus fa fa-minus"></span>
+								</div>
+								Lorem Ipsum is simply dummy text?
+							</div>
+							<div id="right-collapseTwo" class="collapse" aria-labelledby="right-headingTwo"
+								 data-parent="#right-accordion">
+								<div class="card-body">
+									<div class="card-body">
+										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+										incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+										nostrud exercitation ullamco.
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</section>
+<!-- End Faq Page Section -->
+
+<!-- Appointment Section -->
+<section class="appointment-section">
+		<div class="container">
+			<div class="inner-container">
+				<div class="appointment-box">
+					<!-- Sec Title -->
+					<div class="sec-title centered">
+						<h2>Didn’t Find The Answer?</h2>
+					</div>
+
+					<!-- Appointment Form -->
+					<div class="styled-form">
+                        <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                            <input type="text" name="username" placeholder="Full Name" required="">
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                            <input type="email" name="email" placeholder="Email Address" required="">
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                            <input type="text" name="subject" placeholder="Subject" required="">
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                            <textarea class="" name="message" placeholder="Your Message"></textarea>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                            <button class="theme-btn btn-style-one" type="submit" name="submit-form"><span
+                                class="txt">Submit Now</span>
+                            </button>
+                        </div>
+                    </div>
+                    </div>
+                </form>
+            </div>
+
+				</div>
+			</div>
+		</div>
+	</section>
+<!-- End Appointment Section -->
+
+<!-- Main Footer -->
+<footer class="main-footer style-three">
+	<div class="pattern-layer" style="background-image: url(images/background/pattern-7.png)"></div>
+	<div class="curve-layer" style="background-image: url(images/background/pattern-8.png)"></div>
+	<div class="auto-container">
+
+		<!-- Upper Box -->
+		<div class="upper-boxed">
+			<div class="inner-container">
+				<div class="clearfix">
+					<div class="float-left">
+						<div class="appointment"><span class="icon flaticon-telephone"></span>Call For An Appointment
+						</div>
+					</div>
+					<div class="float-right">
+						<a class="phone" href="tel:+1-800-123-4567">+1 (800) 123-4567</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Upper Box -->
+
+		<!-- Widgets Section -->
+		<div class="widgets-section">
+			<div class="row clearfix">
+
+				<!-- Big Column -->
+				<div class="big-column col-lg-6 col-md-12 col-sm-12">
+					<div class="row clearfix">
+
+						<!--Footer Column-->
+						<div class="footer-column col-lg-7 col-md-6 col-sm-12">
+							<div class="footer-widget logo-widget">
+								<div class="logo">
+									<a href="index.html"><img src="images/logo.png" alt="" /></a>
+								</div>
+								<div class="text">Replenish him third creature and meat blessed void a fruit gathered
+									you’re, they’re two waters own morning gathered greater.</div>
+								<div class="social-box">
+									<a href="#" class="fab fa-facebook-square"></a>
+									<a href="#" class="fab fa-twitter-square"></a>
+									<a href="#" class="fab fa-linkedin"></a>
+								</div>
+							</div>
+						</div>
+
+						<!--Footer Column-->
+						<div class="footer-column col-lg-5 col-md-6 col-sm-12">
+							<div class="footer-widget links-widget">
+								<h4>About Us</h4>
+								<ul class="links-widget">
+									<li><a href="#">Afficiates</a></li>
+									<li><a href="#">Partners</a></li>
+									<li><a href="#">Reviews</a></li>
+									<li><a href="#">Blogs</a></li>
+									<li><a href="#">Newsletter</a></li>
+								</ul>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+				<!-- Big Column -->
+				<div class="big-column col-lg-6 col-md-12 col-sm-12">
+					<div class="row clearfix">
+
+						<!--Footer Column-->
+						<div class="footer-column col-lg-6 col-md-6 col-sm-12">
+							<div class="footer-widget links-widget">
+								<h4>Resource</h4>
+								<ul class="links-widget">
+									<li><a href="#">Privacy Policy</a></li>
+									<li><a href="#">Support Area</a></li>
+									<li><a href="#">Documentations</a></li>
+									<li><a href="#">How it works</a></li>
+									<li><a href="#">Terms of Policy</a></li>
+								</ul>
+							</div>
+						</div>
+
+						<!--Footer Column-->
+						<div class="footer-column col-lg-6 col-md-6 col-sm-12">
+							<div class="footer-widget links-widget">
+								<h4>Quick Links</h4>
+								<ul class="links-widget">
+									<li><a href="#">home</a></li>
+									<li><a href="#">About us</a></li>
+									<li><a href="#">Services</a></li>
+									<li><a href="#">Pricing</a></li>
+									<li><a href="#">Latest Post</a></li>
+									<li><a href="#">Contact</a></li>
+								</ul>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+
+	<!-- Footer Bottom -->
+	<div class="footer-bottom">
+		<div class="auto-container">
+			<div class="copyright">Copyright &copy; 2020 AuburnForest</div>
+		</div>
+	</div>
+
+</footer>
+
+</div>
+<!--End pagewrapper-->
+{% endblock %}

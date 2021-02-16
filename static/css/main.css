@@ -19,6 +19,13 @@ a {
     color: inherit;
 }
 
+ul,
+li {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
 button,
 a:hover,
 a:focus,
@@ -73,11 +80,11 @@ a:visited {
     padding: 105px 0px 60px;
 }
 
-.service-block {
+.service-card {
     margin-bottom: 30px;
 }
 
-.service-block .card {
+.service-card .card {
     text-align: center;
     border-radius: 7px;
     border: transparent;
@@ -86,7 +93,7 @@ a:visited {
     box-shadow: 0px 20px 25px rgba(0, 0, 0, 0.05);
 }
 
-.service-block .card .icon-block {
+.service-card .card .icon-card {
     width: 65px;
     height: 65px;
     color: #ffffff;
@@ -103,17 +110,17 @@ a:visited {
     -o-transition: all 500ms ease;
 }
 
-.service-block .card:hover .icon-block {
+.service-card .card:hover .icon-card {
     transform: rotateY(360deg);
 }
 
-.service-block .card h4 {
+.service-card .card h4 {
     font-weight: 700;
     line-height: 1.3em;
     margin-top: 25px;
 }
 
-.service-block .card h4 a {
+.service-card .card h4 a {
     color: #14193d;
     transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
@@ -122,30 +129,30 @@ a:visited {
     -o-transition: all 0.3s ease;
 }
 
-.service-block .card:hover h4 a {
+.service-card .card:hover h4 a {
     color: #5153ff;
 }
 
-.service-block .card p {
+.service-card .card p {
     color: #4e4f51;
     font-size: 16px;
     line-height: 1.9em;
     margin-top: 15px;
 }
 
-.service-block:nth-child(2) .card .icon-block {
+.service-card:nth-child(2) .card .icon-card {
     background-color: #50d5a0;
 }
 
-.service-block:nth-child(2) .card:hover h4 a {
+.service-card:nth-child(2) .card:hover h4 a {
     color: #50d5a0;
 }
 
-.service-block:nth-child(3) .card .icon-block {
+.service-card:nth-child(3) .card .icon-card {
     background-color: #f98f74;
 }
 
-.service-block:nth-child(3) .card:hover h4 a {
+.service-card:nth-child(3) .card:hover h4 a {
     color: #f98f74;
 }
 
@@ -220,10 +227,11 @@ a:visited {
 #about-section .image-column .image img {
     position: relative;
     width: 100%;
-    display: block;
+    display: card;
 }
 
 /* Service Section 2 */
+
 
 /* Team Section */
 
@@ -236,6 +244,152 @@ a:visited {
 
 /*** 
 ========================================
+    FAQ
+========================================
+ ***/
+.sec-title.centered {
+    text-align: center;
+}
+
+.sec-title {
+    z-index: 1;
+    margin-bottom: 40px;
+}
+
+#faq-page-section {
+    padding-top: 90px;
+}
+
+#faq-page-section .inner-container {
+    padding: 0px 70px;
+}
+
+.accordion-box .card {
+    position: relative;
+    margin-bottom: 14px;
+    background-color: #ffffff;
+}
+
+#left-accordion .card .btn,
+#right-accordion .card .btn {
+    font-size: 18px;
+    cursor: pointer;
+    line-height: 34px;
+    color: #14193d;
+    font-weight: 500;
+    background-color: #f6f7fb;
+    padding: 12px 50px 12px 25px;
+    transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -webkit-transition: all 500ms ease;
+    font-family: 'Roboto', sans-serif;
+}
+
+.accordion-box .card .icon-outer {
+    position: absolute;
+    right: 20px;
+    top: 14px;
+    font-size: 20px;
+    color: #262626;
+    transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -webkit-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+}
+
+.accordion-box .card .icon-outer .icon {
+    position: absolute;
+    right: 0px;
+    width: 30px;
+    height: 30px;
+    color: #4e4f51;
+    font-size: 14px;
+    text-align: center;
+    line-height: 32px;
+    background-color: #ffffff;
+}
+
+.accordion-box .card .icon-outer .icon-plus {
+    opacity: 1;
+}
+
+.accordion-box .card .icon-outer .icon-minus {
+    opacity: 0;
+}
+
+.accordion-box .card .btn.collapsed .icon-outer .icon-minus{
+	opacity: 1;
+}
+
+.accordion-box .card .btn.collapsed .icon-outer .icon-plus{
+	opacity: 0;
+}
+
+.accordion-box .card .card-body{
+	font-size:14px;
+	padding:18px 18px 15px 18px;
+}
+
+.accordion-box .card .card-body .accordian-text{
+	line-height:1.8em;
+	font-size:16px;	
+	color:#4e4f51;
+	font-weight:400;
+}
+
+.appointment-section{
+    position:relative;
+    padding:100px 0px 100px;
+    background-attachment:fixed;
+    background-size:cover;
+    background-repeat:no-repeat;
+}
+
+.appointment-section.style-two{
+    padding-bottom:0px;
+}
+
+.appointment-section .inner-container{
+    position:relative;
+    padding-left:200px;
+}
+
+.appointment-section .inner-container .appointment-box{
+    position:relative;
+    padding:50px 60px;
+    max-width:770px;
+    width:100%;
+    border-radius:10px;
+    background-color:#ffffff;
+    box-shadow:0px 0px 30px rgba(0,0,0,0.10);
+}
+
+textarea {
+    position: relative;
+    display: block;
+    width: 100%;
+    line-height: 24px;
+    padding: 15px 20px 20px;
+    color: #888888;
+    border: 1px solid transparent;
+    height: 140px;
+    background: #ffffff;
+    resize: none;
+    font-size: 14px;
+    border-radius: 15px;
+    -webkit-transition: all 300ms ease;
+    -ms-transition: all 300ms ease;
+    -o-transition: all 300ms ease;
+    -moz-transition: all 300ms ease;
+    transition: all 300ms ease;
+    box-shadow: 0px 0px 20px rgb(0 0 0 / 10%);
+}
+
+/*** 
+========================================
     Log In / Sign Up
 ========================================
  ***/
@@ -245,7 +399,6 @@ a:visited {
     text-align: center;
     padding: 200px 0px 150px;
     background-size: cover;
-    background-image: url(/static/image/street.jpg)
 }
 
 #page-title .pattern-layer {
@@ -275,11 +428,11 @@ a:visited {
     margin-bottom: 10px;
 }
 
-#register-section{
+#register-section {
     padding: 110px 0px 120px;
 }
 
-#register-section .register-box{
+#register-section .register-box {
     position: relative;
     max-width: 770px;
     margin: 0 auto;
@@ -332,7 +485,7 @@ a:visited {
     box-shadow: 0px 0px 40px rgb(0 171 21 / 15%);
 }
 
-#login-section{
+#login-section {
     padding: 120px 0px 120px;
 }
 
@@ -357,7 +510,7 @@ a:visited {
     color: #626262;
     font-size: 16px;
     margin-top: 10px;
-    display: inline-block;
+    display: inline-card;
     text-decoration: underline;
 }
 
@@ -388,7 +541,7 @@ a:visited {
 
 /* Site Buttons */
 .theme-btn {
-    display: inline-block;
+    display: inline-card;
     margin-right: 20px;
     padding: 10px 44px;
     font-size: 14px;
@@ -488,6 +641,6 @@ a:visited {
     width: 16px;
     height: 16px;
     content: '';
-    display: block;
+    display: card;
     background: url(/static/image/dott.png) no-repeat;
 }

@@ -18,8 +18,12 @@ app.permanent_session_lifetime = timedelta(days=7)
 #Landing Page
 @app.route('/')
 def index():
-
     return render_template("index.html")
+
+#Webpages
+@app.route('/faq')
+def faq():
+    return render_template("faq.html", title='FAQ')
 
 #Account Management [IC: Arvin]
 @app.route('/login', methods=['GET', 'POST'])
