@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block navbar %}
+{{ super() }}
+{% include 'includes/_navbar.html' %}
+{% endblock %}
+
+{% block content %}
+<div id="page-title" style="background-image: url(/static/image/nature.jpg);">
+  <div class="pattern-layer" style="background-image: url(/static/image/pattern-1.png)"></div>
+  <div class="container">
+    <h1>Update Medicines</h1>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/admin_dashboard">Dashboard</a></li>
+        <li class="breadcrumb-item">Update Medicines</li>
+      </ol>
+    </nav>
+  </div>
+</div>
+<div id="login-section">
+  <div class="container">
+    <div class="login-box">
+      <div class="title-box">
+        <h2>Update Medicines</h2>
+      </div>
+      <div class="styled-form">
+        <form class="col-md-8 offset-2" method="POST" action="">
+          {{ form.hidden_tag() }}
+          {{ wtf.form_field(form.med_name) }}
+          {{ wtf.form_field(form.med_type) }}
+          {{ wtf.form_field(form.quantity) }}
+          <div class="col-lg-12 col-md-12 col-sm-12 text-center">
+            <button type="submit" class="theme-btn btn-style-one">
+              <span>Submit</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

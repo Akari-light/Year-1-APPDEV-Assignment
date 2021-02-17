@@ -477,8 +477,44 @@ def create_med():
 
         db.close()
 
+        session['inventory_created'] = inventory.get_med_name()
+
         return redirect(url_for('medicine_storage'))
     return render_template('createMed.html', form=create_med_form)
+
+@app.route('/updateInventories/<int:id>/', methods=['GET', 'POST'])
+def update_inventories(id):
+    update_inventories_form = CreateMedForm(request.form)
+    if request.method == 'POST' and update_inventories_form.validate():
+        inventories_dict = {}
+        db = shelve.open('storage.db', 'w')
+        inventories_dict = db['Inventories']
+
+        inventory = inventories_dict.get(id)
+        inventory.set_med_name(update_inventories_form.med_name.data)
+        inventory.set_quantity(update_inventories_form.quantity.data)
+        inventory.set_med_type(update_inventories_form.med_type.data)
+
+        db['Inventories'] = inventories_dict
+        db.close()
+
+        session['inventory_updated'] = inventory.get_med_name()
+
+        return redirect(url_for('medicine_storage'))
+
+    else:
+        inventories_dict = {}
+        db = shelve.open('storage.db', 'r')
+        inventories_dict = db['Inventories']
+        db.close()
+
+        inventory = inventories_dict.get(id)
+        update_inventories_form.med_name.data = inventory.get_med_name()
+        update_inventories_form.quantity.data = inventory.get_quantity()
+        update_inventories_form.med_type.data = inventory.get_med_type()
+
+        return render_template('updateInventories.html', form=update_inventories_form)
+
 
 @app.route('/deleteInventories/<int:id>', methods=['POST'])
 def delete_inventories(id):
@@ -490,6 +526,8 @@ def delete_inventories(id):
 
     db['Inventories'] = inventories_dict
     db.close()
+
+    session['inventory_deleted'] = inventory.get_med_name()
 
     return redirect(url_for('medicine_storage'))
 
@@ -529,7 +567,6 @@ def book_appointment():
         else:
             return redirect(url_for('login'))
     return render_template('appointment_booking.html', form=create_appointment_form, title='Appointment Booking')
-
 
 @app.route('/view_appointment')
 def view_appointment():
