@@ -14,7 +14,7 @@
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Home</a></li>
-        <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="/login">Dashboard</a></li>
         <li class="breadcrumb-item">Update Particulars</li>
       </ol>
     </nav>
@@ -29,13 +29,14 @@
       <div class="styled-form">
         <form method="POST" action="">
           {{ form.hidden_tag() }}
-          {{ wtf.form_field(form.first_name) }}
-          {{ wtf.form_field(form.last_name) }}
-          {{ wtf.form_field(form.email) }}
-          {{ wtf.form_field(form.birth_cert) }}
-          {{ wtf.form_field(form.home_addr) }}
-          {{ wtf.form_field(form.telephone) }}
-          {{ wtf.form_field(form.medication) }}
+          {{ wtf.form_field(form.nric) }}
+          {{ wtf.form_field(form.address) }}
+          {{ wtf.form_field(form.postal_code) }}
+          {{ wtf.form_field(form.date_of_birth) }}
+          {{ wtf.form_field(form.contact_no) }}
+          {{ wtf.form_field(form.gender) }}
+          {{ wtf.form_field(form.race) }}
+          {{ wtf.form_field(form.nationality) }}
           <div class="col-lg-12 col-md-12 col-sm-12 text-center">
             <button type="submit" class="theme-btn btn-style-one">
               <span>Submit</span>
