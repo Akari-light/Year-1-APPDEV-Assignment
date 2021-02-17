@@ -82,7 +82,7 @@
                       <td>Patient</td>
                       {% endif %}
                       <td>
-                        <form action="{{url_for('update_account', uid=user[0])}}" method="POST">
+                        <form action="{{url_for('edit_account', uid=user[0])}}" method="POST">
                           <input type="submit" value="Update" class="btn btn-warning">
                         </form>
                       </td>

@@ -129,7 +129,7 @@ def edit_account(uid):
         form.email.data = usr_account.get_email()
         form.account_type.data = usr_account.get_account_type()
 
-        return render_template('Target_site_model', form=form, uid=uid)
+        return render_template('updateAccount.html', form=form, uid=uid)
 
 @app.route('/deleteAccount/<uid>', methods=['POST'])
 def delete_account(uid):

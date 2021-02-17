@@ -79,8 +79,8 @@
                                             {% for patient_information in particulars_list  %}
                                                 {% if account[0] == patient_information[0]%}
                                                     {% if patient_information[1] != None %}                                                    
-                                                        <td>{{ patient_information[1].get_birth_cert() }}</td>
-                                                        <td>{{ patient_information[1].get_telephone() }}</td>
+                                                        <td>{{ patient_information[1].get_nric() }}</td>
+                                                        <td>{{ patient_information[1].get_contact_no() }}</td>
                                                         <td>{{ patient_information[1].get_medication() }}</td>
                                                     {% else %}
                                                         <td colspan="3">No Information Given</td>

@@ -1,5 +1,5 @@
 from wtforms import StringField, PasswordField, BooleanField, SelectField, TextAreaField, RadioField, IntegerField
-from wtforms.fields.html5 import IntegerField, DateField
+from wtforms.fields.html5 import DateField
 from wtforms.validators import *
 from flask_wtf import FlaskForm
 
@@ -7,7 +7,7 @@ from flask_wtf import FlaskForm
 
 #Account Management
 class LoginForm(FlaskForm):
-    email = Email('Email Address', validators=[InputRequired(), Length(min=4, max=35)])
+    email = StringField('Email Address', validators=[InputRequired()])
     password = PasswordField('Password', validators=[InputRequired(), Length(min=4, max=80)])
     remember = BooleanField('Remember Me')
 
@@ -27,25 +27,25 @@ class AdminAccountUpdate(FlaskForm):
 class UserInformationForm(FlaskForm):
     nric = StringField('Birth Certificate:', validators=[Length(min=1, max=150), DataRequired()])
     address = StringField('Home Address:', validators=[Length(min=1, max=300), DataRequired()])
-    postal_code = IntegerField('Postal Code:', validators=[Length(min=6, max=6), DataRequired()])
+    postal_code = StringField('Postal Code:', validators=[Length(min=6, max=6), DataRequired()])
     date_of_birth = DateField('Date Of Birth:', validators=[DataRequired()], format='%Y-%m-%d')
-    contact_no = IntegerField('Contact Number:', validators=[Length(min=8, max=8), DataRequired()])
-    gender = SelectField('Account Type', validators=[DataRequired()], choices=[('', 'Gender'), ('M', 'Male'), ('F', 'Female')], default='')
-    race = SelectField('Account Type', validators=[DataRequired()], choices=[('', 'Race'), ('C', 'Chinese'), ('M', 'Malay'), ('I', 'Indian'), ('O', 'Others')], default='')
-    nationality = SelectField('Account Type', validators=[DataRequired()], choices=[('', 'Nationality'), ('S', 'Singaporean'), ('PR', 'Singapore PR'), ('F', 'Foreigner')], default='')
+    contact_no = StringField('Contact Number:', validators=[Length(min=8, max=8), DataRequired()])
+    gender = SelectField('Gender', validators=[DataRequired()], choices=[('', 'Gender'), ('M', 'Male'), ('F', 'Female')], default='')
+    race = SelectField('Race', validators=[DataRequired()], choices=[('', 'Race'), ('C', 'Chinese'), ('M', 'Malay'), ('I', 'Indian'), ('O', 'Others')], default='')
+    nationality = SelectField('Nationality', validators=[DataRequired()], choices=[('', 'Nationality'), ('S', 'Singaporean'), ('PR', 'Singapore PR'), ('F', 'Foreigner')], default='')
 
 class UserAccountUpdate(FlaskForm):
     first_name = StringField('First Name', validators=[InputRequired(), Length(min=1, max=25)])
     last_name = StringField('Last Name', validators=[InputRequired(), Length(min=1, max=25)])
-    email = Email('Email Address', validators=[InputRequired(), Length(min=4, max=35)])
+    email = StringField('Email Address', validators=[InputRequired(), email("Email is invalid or already taken")])
     nric = StringField('Birth Certificate:', validators=[Length(min=1, max=150), DataRequired()])
     address = StringField('Home Address:', validators=[Length(min=1, max=300), DataRequired()])
-    postal_code = IntegerField('Postal Code:', validators=[Length(min=6, max=6), DataRequired()])
+    postal_code = StringField('Postal Code:', validators=[Length(min=6, max=6), DataRequired()])
     date_of_birth = DateField('Date Of Birth:', validators=[DataRequired()], format='%Y-%m-%d')
-    contact_no = IntegerField('Contact Number:', validators=[Length(min=8, max=8), DataRequired()])
-    gender = SelectField('Account Type', validators=[DataRequired()], choices=[('M', 'Male'), ('F', 'Female')])
-    race = SelectField('Account Type', validators=[DataRequired()], choices=[('C', 'Chinese'), ('M', 'Malay'), ('I', 'Indian'), ('O', 'Others')])
-    nationality = SelectField('Account Type', validators=[DataRequired()], choices=[('S', 'Singaporean'), ('PR', 'Singapore PR'), ('F', 'Foreigner')])
+    contact_no = StringField('Contact Number:', validators=[Length(min=8, max=8), DataRequired()])
+    gender = SelectField('Gender', validators=[DataRequired()], choices=[('', 'Gender'), ('M', 'Male'), ('F', 'Female')], default='')
+    race = SelectField('Race', validators=[DataRequired()], choices=[('', 'Race'), ('C', 'Chinese'), ('M', 'Malay'), ('I', 'Indian'), ('O', 'Others')], default='')
+    nationality = SelectField('Nationality', validators=[DataRequired()], choices=[('', 'Nationality'), ('S', 'Singaporean'), ('PR', 'Singapore PR'), ('F', 'Foreigner')], default='')
 
 class CreateMedForm(FlaskForm):
     med_name = StringField('Medicine Name', [Length(min=1, max=150), DataRequired()])

@@ -56,10 +56,16 @@
             <tr>
               <th>Full Name</th>
               <th>Email</th>
-              <th>Birth Certificate No.</th>
+              <th>NRIC</th>
               <th>Home Address</th>
-              <th>Telephone Number</th>
+              <th>Postal Code</th>
+              <th>Date Of Birth</th>
+              <th>Contact No</th>
+              <th>Gender</th>
+              <th>Race</th>
+              <th>Nationality</th>
               <th>Medication</th>
+              <th>Appointments</th>
               <th></th>
             </tr>
           </thead>
@@ -67,10 +73,16 @@
             <tr>
               <td>{{ patient_acc.get_full_name() }}</td>
               <td>{{ patient_acc.get_email() }}</td>
-              <td>{{ patient_info.get_birth_cert() }}</td>
-              <td>{{ patient_info.get_home_addr() }}</td>
-              <td>{{ patient_info.get_telephone() }}</td>
+              <td>{{ patient_info.get_nric() }}</td>
+              <td>{{ patient_info.get_address() }}</td>
+              <td>{{ patient_info.get_postal_code() }}</td>
+              <td>{{ patient_info.get_date_of_birth() }}</td>
+              <td>{{ patient_info.get_contact_no() }}</td>
+              <td>{{ patient_info.get_gender() }}</td>
+              <td>{{ patient_info.get_race() }}</td>
+              <td>{{ patient_info.get_nationality() }}</td>
               <td>{{ patient_info.get_medication() }}</td>
+              <td>{{ patient_info.get_appointment_id() }}</td>
               <td>
                 <form action="{{url_for('update_patient', uid=acc_id)}}" method="POST">
                   <input type="submit" value="Update" class="btn btn-warning">

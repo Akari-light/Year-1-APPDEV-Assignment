@@ -57,7 +57,7 @@ class User:
         self.__race = race
         self.__nationality = nationality
         self.__medication = medication
-        self.__appointment_id
+        self.__appointment_id = appointment_id
 
     #Accesser & Mutator
     def set_nric (self, nric):
