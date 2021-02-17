@@ -266,6 +266,11 @@ a:visited {
 	box-shadow:0px 0px 30px rgba(0,0,0,0.10);
 }
 
+.appointment-form {
+    padding: 30px 0;
+}
+
+
 /* News Section */
 
 
@@ -480,37 +485,7 @@ textarea {
     line-height: 1.3em;
 }
 
-.styled-form .form-group label {
-    display: none;
-}
 
-.styled-form .form-group input {
-    height: 46px;
-    padding: 6px 25px;
-    width: 100%;
-    color: #4e4f51;
-    font-size: 14px;
-    border-radius: 50px;
-    border: transparent;
-    transition: all 500ms ease;
-    -moz-transition: all 500ms ease;
-    -webkit-transition: all 500ms ease;
-    -ms-transition: all 500ms ease;
-    -o-transition: all 500ms ease;
-    box-shadow: 0px 0px 25px rgb(0 0 0 / 10%);
-}
-
-.styled-form .theme-btn {
-    border-radius: 50px;
-    max-width: 200px;
-    width: 100%;
-    margin: 0 auto;
-    font-size: 14px;
-    margin-bottom: 15px;
-    cursor: pointer;
-    margin-top: 15px;
-    box-shadow: 0px 0px 40px rgb(0 171 21 / 15%);
-}
 
 #login-section {
     padding: 120px 0px 120px;
@@ -546,6 +521,46 @@ textarea {
     Theme Settings
 ========================================
  ***/
+/* Forms */
+.styled-form .form-group label {
+    display: none;
+}
+
+.styled-form .form-group select,
+.styled-form .form-group input {
+    height: 46px;
+    padding: 6px 25px;
+    width: 100%;
+    color: #4e4f51;
+    font-size: 14px;
+    border-radius: 50px;
+    border: transparent;
+    transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -webkit-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    box-shadow: 0px 0px 25px rgb(0 0 0 / 10%);
+}
+
+.styled-form .theme-btn {
+    border-radius: 50px;
+    max-width: 230px;
+    width: 100%;
+    margin: 0 auto;
+    font-size: 14px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    margin-top: 15px;
+    box-shadow: 0px 0px 40px rgb(0 171 21 / 15%);
+}
+
+.styled-form .form-group select option {
+    display: block;
+    padding: 8px 20px;
+    font-size: 14px;
+    line-height: 24px;
+}
 
 /* Checkbox */
 .styled-form .checkbox {

@@ -416,23 +416,25 @@ def update_patient(uid):
 #Inventory Management [IC: Xue Qi]
 @app.route('/medicine_storage')
 def medicine_storage():
-    inventories_dict = {}
+    if verify_account_type('S'):
+        inventories_dict = {}
+        try:
+            db = shelve.open('storage.db', 'r')
+            inventories_dict = db['Inventories']
+            db.close()
+        except:
+            print("Error in retrieving Inventories from storage.db")
 
-    try:
-        db = shelve.open('storage.db', 'r')
-        inventories_dict = db['Inventories']
-        db.close()
-    except:
-        print("Error in retrieving Inventories from storage.db")
+        inventories_list = []
 
-    inventories_list = []
+        for key in inventories_dict:
+            inventory = inventories_dict.get(key)
+            inventories_list.append(inventory)
 
-    for key in inventories_dict:
-        inventory = inventories_dict.get(key)
-        inventories_list.append(inventory)
-
-        
-    return render_template('medicine_storage.html',  title='Medicine Storage', inventories_list=inventories_list)
+            
+        return render_template('medicine_storage.html',  title='Medicine Storage', inventories_list=inventories_list)
+    else:
+        return redirect(url_for('/'))
 
 @app.route('/createMed', methods=['GET', 'POST'])
 def create_med():
@@ -475,16 +477,19 @@ def delete_inventories(id):
     return redirect(url_for('medicine_storage'))
 
 #Appointment [IC: Htet Lin]
-@app.route('/create_appointment', methods=['GET', 'POST'])# fix message flash
-def create_appointment():
-    if "session_id" in session:
-        create_appointment_form = CreateAppointmentForm(request.form)
+@app.route('/book_appointment', methods=['GET', 'POST'])# fix message flash
+def book_appointment():
+    create_appointment_form = CreateAppointmentForm(request.form)
 
-        if request.method == 'POST' and create_appointment_form.validate():
+    if request.method == 'POST' and form.validate():        
+        if "session_id" in session:
             appointments_dict = {}
+            particulas_dict = {}
+            
             db = shelve.open('storage.db', 'c')
 
             try:
+                particulas_dict = db['Account_particulas']
                 users_dict = db['Appointments']
             except:
                 print("ERROR: Could not retrieve Appointments from storage.db.")
@@ -494,15 +499,19 @@ def create_appointment():
                 db['Appointments'] = appointments_dict
 
             appointment = Appointment(create_appointment_form.doctor.data, create_appointment_form.appointment_type.data, create_appointment_form.appointment_date.data, create_appointment_form.appointment_time.data)
-            appointments_dict[appointment_id_generator()] = appointment
+            appointment_id = appointment_id_generator()
+            appointments_dict[appointment_id] = appointment
+            patient_info = particulas_dict.get(session['session_id'])
+            patient_info.set_appointment_id(appointment_id)
             db['Appointments'] = appointments_dict
 
             db.close()
 
-            return '<h1>Appointment booked</h1>'
-        return render_template('createUser.html', form=create_appointment_form)
-    else:        
-        return '<h1>please sign in</h1>'
+            return redirect(url_for(dashboard_routing()))
+        else:        
+            return redirect(url_for('login'))
+    return render_template('appointment_booking.html', form=create_appointment_form, title='Appointment Booking')
+
 
 @app.route('/view_appointment')
 def view_appointment():

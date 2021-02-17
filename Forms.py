@@ -54,9 +54,9 @@ class CreateMedForm(FlaskForm):
 
 #Appointment name, phone, doctor, appointment_type, date, time
 class CreateAppointmentForm(FlaskForm):
-    doctor = SelectField('Appointment type', validators=[DataRequired()], choices=[('', 'Doctor'), ('Arvin', 'Arvin'), ('Xue Qi', 'Xue Qi'), ('Htet', 'Htet'), ('Poh Loon', 'Poh Loon')], default='')
-    appointment_type = SelectField('Appointment type', validators=[DataRequired()], choices=[('', 'Select'), ('Face to face', 'Face to face'), ('Online Appointment', 'Online Appointment')], default='')
+    doctor = SelectField('Appointment type', validators=[DataRequired()], choices=[('', 'Doctors'), ('Arvin', 'Arvin'), ('Xue Qi', 'Xue Qi'), ('Htet', 'Htet'), ('Poh Loon', 'Poh Loon')], default='')
+    appointment_type = SelectField('Appointment type', validators=[DataRequired()], choices=[('', 'Appointment Type'), ('Face to face', 'Face to face'), ('Online Appointment', 'Online Appointment')], default='')
     appointment_date = DateField('Booking Date:', validators=[DataRequired()], format='%Y-%m-%d')
-    appointment_time = SelectField('Time', validators=[DataRequired()], choices=[('', 'Select'), ('09:00 - 10:00', '09:00 - 10:00'), ('10:00 - 11:00', '10:00 - 11:00'), ('14:00 - 15:00', '14:00 - 15:00'), ('15:00 - 16:00', '15:00 - 16:00')], default='')
+    appointment_time = SelectField('Time', validators=[DataRequired()], choices=[('', 'Time Slot'), ('09:00 - 10:00', '09:00 - 10:00'), ('10:00 - 11:00', '10:00 - 11:00'), ('14:00 - 15:00', '14:00 - 15:00'), ('15:00 - 16:00', '15:00 - 16:00')], default='')
 
 
