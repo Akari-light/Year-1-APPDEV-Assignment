@@ -516,14 +516,30 @@ textarea {
     text-decoration: underline;
 }
 
+.profile-display table th,
+.profile-display table td{
+    max-width: 300px;
+}
+
 /*** 
 ========================================
     Theme Settings
 ========================================
  ***/
 /* Forms */
-.styled-form .form-group label {
+.styled-form .form-group label,
+.styled-form .remove-help-block p.help-block{
     display: none;
+}
+
+.styled-form .form-group p.help-block {
+    padding-left: 7px;
+    color: red !important;
+    font-size: smaller !important;
+}
+
+.styled-form .radio {
+    padding-left: 15px;
 }
 
 .styled-form .form-group select,

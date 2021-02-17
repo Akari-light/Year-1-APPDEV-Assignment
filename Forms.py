@@ -20,8 +20,16 @@ class RegistrationForm(FlaskForm):
     accept_tos = BooleanField('I agree the user agreement and Terms & Conditions', validators=[DataRequired()])
 
 class AdminAccountUpdate(FlaskForm):
-    account_type = SelectField('Account Type', choices=[('A', 'Admin'), ('S', 'staff'), ('D', 'Doctor'), ('P', 'Patient')])
+    account_type = SelectField('Account Type', choices=[('A', 'Admin'), ('S', 'Staff'), ('D', 'Doctor'), ('P', 'Patient')])
     email = StringField('Email Address', validators=[InputRequired(), email("Email is invalid or already taken")])
+
+class AdminCreateForm(FlaskForm):
+    first_name = StringField('First Name', validators=[InputRequired(), Length(min=1, max=25)])
+    last_name = StringField('Last Name', validators=[InputRequired(), Length(min=1, max=25)])
+    email = StringField('Email Address', validators=[InputRequired(), email("Email is invalid or already taken")])
+    account_type = SelectField('Account Type', choices=[('A', 'Admin'), ('S', 'staff'), ('D', 'Doctor'), ('P', 'Patient')])
+    password = PasswordField('Password', validators=[InputRequired(), EqualTo('confirm', message='Passwords must match'), Length(min=4, max=80)])
+    confirm = PasswordField('Repeat Password')
 
 #Users Information
 class UserInformationForm(FlaskForm):

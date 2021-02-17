@@ -90,18 +90,35 @@ def register():
         db['Accounts'] = account_dict
         db['Account_particulas'] = particulas_dict
 
-        # Test codes
-        account_dict = db['Accounts']
-        for uid, account in account_dict.items():
-            if account.get_email() == form.email.data:
-                n_account = account_dict[uid]
-                testing = uid
-        print(n_account.get_first_name(), n_account.get_last_name(), "was stored in storage.db successfully with uid",testing)
-
         db.close()
         return redirect(url_for('login'))
     
     return render_template('register.html', form=form, title='Registration')
+
+@app.route('/admin_create', methods=['GET', 'POST'])
+def admin_create():
+    form = AdminCreateForm(request.form)
+
+    if request.method == 'POST' and form.validate():
+        account_dict = {}
+        particulas_dict = {}
+        db = shelve.open('storage.db', 'c')
+
+        try:
+            account_dict = db['Accounts']
+            particulas_dict = db['Account_particulas']
+        except:
+            print("ERROR: Failed to retrive Accounts from storage.db")
+
+        uid = account_id_generator()
+        account_dict[uid] = Account(form.first_name.data, form.last_name.data, form.email.data, generate_password_hash(form.password.data, method="sha256"), form.account_type.data)
+        particulas_dict[uid] = None
+        db['Accounts'] = account_dict
+
+        db.close()
+        return redirect(url_for('admin_dashboard'))
+    
+    return render_template('admin_create.html', form=form, title='Registration')
 
 @app.route('/edit_account/<uid>', methods=['GET', 'POST']) #Change to Site model at admin_dashboard (INCOMPLETE)
 def edit_account(uid):

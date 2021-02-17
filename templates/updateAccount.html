@@ -1,18 +1,46 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 
-{% block content %}
-<div class="containter-fluid">
-  <div class="row">
-    <h1 class="display-4">Update Accounts</h1>
+{% block navbar %}
+{{ super() }}
+{% include 'includes/_navbar.html' %}
+{% endblock %}
 
-    <form class="col-md-8 offset-2" method="POST" action="">
-      {{ form.hidden_tag() }}
-      {{ wtf.form_field(form.email) }}
-      {{ wtf.form_field(form.account_type) }}
-      <input type="submit" value="Submit" class="btn btn-primary" />
-    </form>
+{% block content %}
+<div id="page-title" style="background-image: url(/static/image/nature.jpg);">
+  <div class="pattern-layer" style="background-image: url(/static/image/pattern-1.png)"></div>
+  <div class="container">
+    <h1>Edit Account</h1>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/admin_dashboard">Dashboard</a></li>
+        <li class="breadcrumb-item">Update Accounts</li>
+      </ol>
+    </nav>
   </div>
 </div>
-
+<div id="login-section">
+  <div class="container">
+    <div class="login-box">
+      <div class="title-box">
+        <h2>Update Accounts</h2>
+      </div>
+      <div class="styled-form">
+        <form method="POST" action="">
+          {{ form.hidden_tag() }}
+          <label>Email</label>
+          {{ wtf.form_field(form.email) }}
+          <label>Account Type</label>
+          {{ wtf.form_field(form.account_type, class="form-control remote-help-block") }}
+          <div class="col-lg-12 col-md-12 col-sm-12 text-center">
+            <button type="submit" class="theme-btn btn-style-one">
+              <span>Submit</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}

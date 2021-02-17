@@ -19,24 +19,25 @@
       <nav class="navbar">
         <ul class="nav flex-column" id="main-menu">
           <li class="nav-item">
-            <a class="nav-link active" href="/admin_dashboard"><i class="fa fa-dashboard"></i> Dashboard</a>
+            <a class="nav-link active" href="/login"><i class="fa fa-dashboard"></i> Dashboard</a>
           </li>
         </ul>
       </nav>
     </div>
     <!-- Site Content -->
-    <div class="col-md-10 p-0">
+    <div class="col-sm-12 col-md-10 p-0">
       <h1 class="page-header">
         Dashboard <small>Welcome {{ name }}</small>
       </h1>
       <nav id="dashboard-breadcrumb" aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
           <li class="breadcrumb-item"><a href="#">Admin</a></li>
           <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
         </ol>
       </nav>
       <div class="page-inner">
+        <a href="/admin_create" class="btn btn-default btn-outline-secondary" style="margin: 0 0 15px 15px;">Create Account</a>
         <!-- Account Table -->
         <div id="account-panel" class="col-md-12">
           <!-- Advanced Tables -->

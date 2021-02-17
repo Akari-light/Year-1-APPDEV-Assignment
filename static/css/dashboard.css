@@ -54,6 +54,7 @@
 
 .dashboard-content {
     background-color: rgb(237, 237, 237);
+    min-height: 100vh;
 }
 
 .page-header {
@@ -68,7 +69,6 @@
 .page-inner {
     width: 100%;
     margin: 10px 20px 10px 0px;
-    background-color: rgb(237, 237, 237);
     padding: 15px 30px;
     min-height: 1000px;
 }
