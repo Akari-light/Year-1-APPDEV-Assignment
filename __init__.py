@@ -481,7 +481,7 @@ def delete_inventories(id):
 def book_appointment():
     create_appointment_form = CreateAppointmentForm(request.form)
 
-    if request.method == 'POST' and form.validate():        
+    if request.method == 'POST' and create_appointment_form.validate():        
         if "session_id" in session:
             appointments_dict = {}
             particulas_dict = {}

@@ -13,23 +13,13 @@
 
 {% block content %}
 <div class="container-fluid">
-  <div class="row">
+  <div class="row dashboard-content">
     <!-- Side Navbar -->
-    <div id="side-nav" class="col-sm-12 col-md-2">
+    <div id="side-nav" class="col-sm-12 col-md-2 p-0">
       <nav class="navbar">
         <ul class="nav flex-column" id="main-menu">
           <li class="nav-item">
-            <a class="nav-link active" href="/staff_dashboard"><i class="fa fa-dashboard"></i> Dashboard</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/medicine_storage" class="active-menu"><i
-                class="fas fa-prescription-bottle-alt"></i> Medicines</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/view_patient_information"><i class="fa fa-edit"></i>Patients</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fa fa-fw fa-file"></i> ???</a>
+            <a class="nav-link active" href="/admin_dashboard"><i class="fa fa-dashboard"></i> Dashboard</a>
           </li>
         </ul>
       </nav>
@@ -47,12 +37,12 @@
         </ol>
       </nav>
       <div class="page-inner">
-        <!-- Medicine Table -->
-        <div id="medicine-panel" class="col-md-12">
+        <!-- Account Table -->
+        <div id="account-panel" class="col-md-12">
           <!-- Advanced Tables -->
           <div class="panel panel-default">
             <div class="panel-heading">
-              Dashboard <small>Welcome {{ name }}</small>
+              Panel: <small>Account List</small>
             </div>
 
             <div class="panel-body">
@@ -112,8 +102,8 @@
 {{ super() }}
 <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
 <script>
-    $(document).ready(function () {
-        $('#dataTables-example').dataTable();
-    });
+  $(document).ready(function () {
+    $('#dataTables-example').dataTable();
+  });
 </script>
 {% endblock %}

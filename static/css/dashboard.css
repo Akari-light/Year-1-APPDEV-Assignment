@@ -7,14 +7,53 @@
     width: 100%;
 }
 
+#side-nav nav.navbar{
+    padding:0;
+}
+
+#side-nav nav.navbar ul{
+    width: 100%;
+}
+
+#side-nav nav.navbar ul li a{
+    padding: 10px;
+    border-bottom: #323232 1px solid;
+}
+
+#side-nav nav.navbar ul li a.active{
+    background-color: rgba(27, 27, 27, 0.9) !important;
+    color: #F09B22 !important;
+}
+
+#side-nav .nav>li>a {
+    color: #323232;
+    background: transparent;
+    text-shadow: none;
+}
+
+#side-nav .nav>li>a>i {
+    padding: 8px;
+    width: 30px;
+    text-align: center;
+}
+
+.nav>li>a>i {
+    margin-right: 10px;
+}
+
 /*** 
 ========================================
     Site Content
 ========================================
  ***/
 #side-nav {
-    background-color: grey;
+    background-color: #f8f9fa;
+    border-top: 1px grey solid;
     max-height: 100%;
+}
+
+.dashboard-content {
+    background-color: rgb(237, 237, 237);
 }
 
 .page-header {
@@ -22,7 +61,6 @@
     margin: 0;
     border-bottom: 1px solid transparent;
     text-align: left;
-    background-color: rgb(237, 237, 237);
     padding: 32px 22px 32px 15px;
     color: #323232;
 }
@@ -32,7 +70,7 @@
     margin: 10px 20px 10px 0px;
     background-color: rgb(237, 237, 237);
     padding: 15px 30px;
-    min-height: 1200px;
+    min-height: 1000px;
 }
 
 .panel-heading {
@@ -55,6 +93,7 @@
     margin-bottom: 20px;
     list-style: none;
     border-radius: 0;
+    border: transparent !important;
     -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
     box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
     border: #dddddd solid 1px;
