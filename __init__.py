@@ -1,6 +1,6 @@
 #python -m virtualenv env  (make a venv)
 #env\scripts\activate 
-import shelve, uuid
+import shelve, uuid, random, string
 from flask import *
 from flask_bootstrap import Bootstrap
 from datetime import timedelta
@@ -333,7 +333,7 @@ def view_patient_information():
 #Patient Information [IC: Poh Loon]
 @app.route('/createPatient/<uid>', methods=['GET', 'POST'])
 def create_patient(uid):
-    create_patient_information = PatientInformationForm(request.form)
+    create_patient_information = UserInformationForm(request.form)
 
     if create_patient_information.validate_on_submit():
         particulas_dict = {}
@@ -343,8 +343,8 @@ def create_patient(uid):
             particulas_dict = db['Account_particulas']
         except:
             print("Error in retrieving Account_particulas from storage.db.")
-        # nric address postal_code date_of_birth contact_no gender race nationality medication
-        patient = User(create_patient_information.nric.data, create_patient_information.address.data, create_patient_information.postal_code.data, create_patient_information.date_of_birth.data, create_patient_information.contact_no.data, create_patient_information.gender.data, create_patient_information.race.data, create_patient_information.nationality.data, create_patient_information.medication)
+        
+        patient = User(create_patient_information.nric.data, create_patient_information.address.data, create_patient_information.postal_code.data, create_patient_information.date_of_birth.data, create_patient_information.contact_no.data, create_patient_information.gender.data, create_patient_information.race.data, create_patient_information.nationality.data)
         particulas_dict[uuid.UUID(uid)] = patient
         db['Account_particulas'] = particulas_dict
 
@@ -356,9 +356,9 @@ def create_patient(uid):
 
 @app.route('/updatePatient/<uid>/', methods=['GET', 'POST'])
 def update_patient(uid):
-    update_patient_information = PatientAccountUpdate(request.form)
+    update_user_information = UserAccountUpdate(request.form)
 
-    if update_patient_information.validate_on_submit():
+    if update_user_information.validate_on_submit():
         account_dict = {}
         particulas_dict = {}
         db = shelve.open('storage.db', 'w')
@@ -369,16 +369,22 @@ def update_patient(uid):
         usr_account = account_dict[uuid.UUID(uid)]
         usr_info = particulas_dict[uuid.UUID(uid)]
 
-        usr_account.set_first_name(update_patient_information.first_name.data)
-        usr_account.set_last_name(update_patient_information.last_name.data)
-        usr_account.set_email(update_patient_information.email.data)
-        usr_info.set_birth_cert(update_patient_information.birth_cert.data)
-        usr_info.set_home_addr(update_patient_information.home_addr.data)
-        usr_info.set_telephone(update_patient_information.telephone.data)
-        usr_info.set_medication(update_patient_information.medication.data)
+        #Updating necessary data.
+        usr_account.set_first_name(update_user_information.first_name.data)
+        usr_account.set_last_name(update_user_information.last_name.data)
+        usr_account.set_email(update_user_information.email.data)
+        usr_info.set_nric(update_user_information.nric.data)
+        usr_info.set_address(update_user_information.address.data)
+        usr_info.set_postal_code(update_user_information.postal_code.data)
+        usr_info.set_date_of_birth(update_user_information.date_of_birth.data)
+        usr_info.set_contact_no(update_user_information.contact_no.data)
+        usr_info.set_gender(update_user_information.gender.data)
+        usr_info.set_race(update_user_information.race.data)
+        usr_info.set_nationality(update_user_information.nationality.data)
 
         db['Accounts'] = account_dict
         db['Account_particulas'] = particulas_dict
+
         db.close()
 
         return redirect(url_for('patient_dashboard'))
@@ -393,15 +399,19 @@ def update_patient(uid):
         usr_account = account_dict[uuid.UUID(uid)]
         usr_info = particulas_dict[uuid.UUID(uid)]
         
-        update_patient_information.first_name.data = usr_account.get_first_name()
-        update_patient_information.last_name.data = usr_account.get_last_name()
-        update_patient_information.email.data = usr_account.get_email()
-        update_patient_information.birth_cert.data = usr_info.get_birth_cert()
-        update_patient_information.home_addr.data = usr_info.get_home_addr()
-        update_patient_information.telephone.data = usr_info.get_telephone()
-        update_patient_information.medication.data = usr_info.get_medication()
+        update_user_information.first_name.data = usr_account.get_first_name()
+        update_user_information.last_name.data = usr_account.get_last_name()
+        update_user_information.email.data = usr_account.get_email()
+        update_user_information.nric.data = usr_info.get_nric()
+        update_user_information.address.data = usr_info.get_address()
+        update_user_information.postal_code.data = usr_info.get_postal_code()
+        update_user_information.date_of_birth.data = usr_info.get_date_of_birth()
+        update_user_information.contact_no.data = usr_info.get_contact_no()
+        update_user_information.gender.data = usr_info.get_gender()
+        update_user_information.race.data = usr_info.get_race()
+        update_user_information.nationality.data = usr_info.get_nationality()
 
-        return render_template('updatePatient.html', form=update_patient_information)
+        return render_template('updatePatient.html', form=update_user_information)
 
 #Inventory Management [IC: Xue Qi]
 @app.route('/medicine_storage')
@@ -463,6 +473,52 @@ def delete_inventories(id):
     db.close()
 
     return redirect(url_for('medicine_storage'))
+
+#Appointment [IC: Htet Lin]
+@app.route('/create_appointment', methods=['GET', 'POST'])# fix message flash
+def create_appointment():
+    if "session_id" in session:
+        create_appointment_form = CreateAppointmentForm(request.form)
+
+        if request.method == 'POST' and create_appointment_form.validate():
+            appointments_dict = {}
+            db = shelve.open('storage.db', 'c')
+
+            try:
+                users_dict = db['Appointments']
+            except:
+                print("ERROR: Could not retrieve Appointments from storage.db.")
+
+            #Finish setting up Appointments in shelve.
+            if len(appointments_dict) == 0:
+                db['Appointments'] = appointments_dict
+
+            appointment = Appointment(create_appointment_form.doctor.data, create_appointment_form.appointment_type.data, create_appointment_form.appointment_date.data, create_appointment_form.appointment_time.data)
+            appointments_dict[appointment_id_generator()] = appointment
+            db['Appointments'] = appointments_dict
+
+            db.close()
+
+            return '<h1>Appointment booked</h1>'
+        return render_template('createUser.html', form=create_appointment_form)
+    else:        
+        return '<h1>please sign in</h1>'
+
+@app.route('/view_appointment')
+def view_appointment():
+    return
+    
+def appointment_id_generator():
+    appointments_dict = {}
+    db = shelve.open('storage.db', 'r')
+    appointments_dict = db['Appointments']
+
+    db.close()
+
+    while True:
+        appointment_id = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
+        if appointment_id not in appointments_dict.keys():
+            return appointment_id
 
 #Testing route
 @app.route('/testSite')
