@@ -18,7 +18,7 @@ var myChart = new Chart(ctx, {
         labels: ['January', 'February', 'March', 'April', 'May', 'June', "July", "August", "September", "October", "November", "December"],
         datasets: [{
             label: "Sale Amount",
-            data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            data: [1500, 800, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             fill: true,
             borderWidth: 3,
             order:0,

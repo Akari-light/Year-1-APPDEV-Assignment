@@ -506,8 +506,8 @@ def book_appointment():
             db = shelve.open('storage.db', 'c')
 
             try:
+                appointments_dict = db['Appointments']
                 particulas_dict = db['Account_particulas']
-                users_dict = db['Appointments']
             except:
                 print("ERROR: Could not retrieve Appointments from storage.db.")
 
@@ -518,14 +518,15 @@ def book_appointment():
             appointment = Appointment(create_appointment_form.doctor.data, create_appointment_form.appointment_type.data, create_appointment_form.appointment_date.data, create_appointment_form.appointment_time.data)
             appointment_id = appointment_id_generator()
             appointments_dict[appointment_id] = appointment
-            patient_info = particulas_dict.get(session['session_id'])
+            uid = session['session_id']
+            patient_info = particulas_dict[uid]
             patient_info.set_appointment_id(appointment_id)
             db['Appointments'] = appointments_dict
 
             db.close()
 
             return redirect(url_for(dashboard_routing()))
-        else:        
+        else:
             return redirect(url_for('login'))
     return render_template('appointment_booking.html', form=create_appointment_form, title='Appointment Booking')
 

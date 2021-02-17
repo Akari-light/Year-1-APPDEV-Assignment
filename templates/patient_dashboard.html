@@ -28,9 +28,9 @@
     </div>
     <!-- Content -->
     <div class="col-sm-12 col-md-10 p-0">
-        <h1 class="page-header">
-          Dashboard <small>Welcome {{ name }}</small>
-        </h1>
+      <h1 class="page-header">
+        Dashboard <small>Welcome {{ name }}</small>
+      </h1>
       <nav id="dashboard-breadcrumb" aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="/">Home</a></li>
@@ -47,9 +47,12 @@
             style="margin: 5px;">Update my personal informations</a>
           {% else %}
           <table class="table table-striped">
-            <thead>        <form action="{{url_for('update_patient', uid=acc_id)}}" method="POST">
-              <input type="submit" class="btn btn-default btn-outline-secondary" style="margin: 0 0 15px 15px;" value="Update">
-            </form></thead>
+            <thead>
+              <form action="{{url_for('update_patient', uid=acc_id)}}" method="POST">
+                <input type="submit" class="btn btn-default btn-outline-secondary" style="margin: 0 0 15px 15px;"
+                  value="Update">
+              </form>
+            </thead>
             <tbody>
               <tr>
                 <th>Full Name</th>
