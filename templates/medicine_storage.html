@@ -53,45 +53,97 @@
             </div>
 
             <div class="panel-body">
-              <div class="table-responsive">
-                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                  <thead>
+              <table class="table table-striped">
+                <thead>
                     <tr>
-                      <th>Name</th>
-                      <th>Quantity</th>
-                      <th>Type</th>
-                      <th>Delete</th>
-                      <th>Update</th>
+                        <th>Medicine ID</th>
+                        <th>Medicine Name</th>
+                        <th>Quantity</th>
+                        <th>Medicine Type</th>
                     </tr>
-                  </thead>
-                  <tbody>
+                </thead>
+                <tbody id="myTable">
                     {% for inventory in inventories_list %}
-                    <tr>
-                      <td>{{ inventory.get_med_name() }}</td>
-                      <td>{{ inventory.get_quantity() }}</td>
-                      {% if inventory.get_med_type() == "P" %}
-                      <td>Pills</td>
-                      {% elif inventory.get_med_type() == "L" %}
-                      <td>Liquid (Bottles of 100ml)</td>
-                      {% elif inventory.get_med_type() == "C" %}
-                      <td>Cream</td>
-                      {% endif %}
-                      <td>
-                        <form action="{{url_for('delete_inventories', id=inventory.get_med_id())}}" method="POST">
-                          <input type="submit" value="Delete" class="btn btn-danger"
-                            onclick="return confirm('Are you sure you want to delete {{inventory.get_med_name()}}?');">
-                        </form>
-                      </td>
-                      <td><a href="/updateInventories/{{inventory.get_med_id()}}" class="btn btn-warning">Update</a></td>
+                    {% if inventory.get_quantity() <= 200 %}
+                    <tr class="table-danger">
+                        <td>{{ inventory.get_med_id() }}</td>
+                        <td>
+                            <div id=button>
+                                <button type="button" class="btn btn-link" data-toggle="modal"
+                                    data-target="#myModal_{{inventory.get_med_name()}}">{{ inventory.get_med_name() }}
+                                </button>
+                            </div>
+        
+                            <!-- The Modal -->
+                            <div class="modal" id="myModal_{{inventory.get_med_name()}}">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+        
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Order Confirmation</h4>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+        
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+                                            Are you sure you want to order {{inventory.get_med_name()}} (Bundle of 400)?
+                                        </div>
+        
+        
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer">
+                                            <a class="btn btn-primary" href="/orderMed">Order</a>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                        </div>
+        
+        
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>{{ inventory.get_quantity() }} (LOW SUPPLY)</td>
+                        {% if inventory.get_med_type() == "P" %}
+                        <td>Pills (10 Pills)</td>
+                        {% elif inventory.get_med_type() == "L" %}
+                        <td>Liquid (Bottles of 100ml)</td>
+                        {% elif inventory.get_med_type() == "C" %}
+                        <td>Cream (10 tubes/containers)</td>
+                        {% endif %}
+                        <td><a href="/updateInventories/{{inventory.get_med_id()}}" class="btn btn-warning">Update</a></td>
+                        <td>
+                            <form action="{{url_for('delete_inventories', id=inventory.get_med_id())}}" method="POST">
+                                <input type="submit" value="Delete" class="btn btn-danger"
+                                    onclick="return confirm('Are you sure you want to delete {{inventory.get_med_name()}}?');">
+                            </form>
+                        </td>
                     </tr>
+                    {% else %}
+                    <tr>
+                        <td>{{ inventory.get_med_id() }}</td>
+                        <td>{{ inventory.get_med_name() }}</td>
+                        <td>{{ inventory.get_quantity() }}</td>
+                        {% if inventory.get_med_type() == "P" %}
+                        <td>Pills (10 Pills)</td>
+                        {% elif inventory.get_med_type() == "L" %}
+                        <td>Liquid (Bottles of 100ml)</td>
+                        {% elif inventory.get_med_type() == "C" %}
+                        <td>Cream (10 tubes/containers)</td>
+                        {% endif %}
+                        <td><a href="/updateInventories/{{inventory.get_med_id()}}" class="btn btn-warning">Update</a></td>
+                        <td>
+                            <form action="{{url_for('delete_inventories', id=inventory.get_med_id())}}" method="POST">
+                                <input type="submit" value="Delete" class="btn btn-danger"
+                                    onclick="return confirm('Are you sure you want to delete {{inventory.get_med_name()}}?');">
+                            </form>
+                        </td>
+                    </tr>
+        
+                    {% endif %}
                     {% endfor %}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--End Advanced Tables -->
+        
+                </tbody>
+            </table>
       </div>
     </div>
   </div>

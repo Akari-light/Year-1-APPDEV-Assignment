@@ -120,7 +120,7 @@ def admin_create():
     
     return render_template('admin_create.html', form=form, title='Registration')
 
-@app.route('/edit_account/<uid>', methods=['GET', 'POST']) #Change to Site model at admin_dashboard (INCOMPLETE)
+@app.route('/edit_account/<uid>', methods=['GET', 'POST'])
 def edit_account(uid):
     form = AdminAccountUpdate(request.form)
     if form.validate_on_submit():
@@ -503,6 +503,8 @@ def update_inventories(id):
         return redirect(url_for('medicine_storage'))
 
     else:
+
+
         inventories_dict = {}
         db = shelve.open('storage.db', 'r')
         inventories_dict = db['Inventories']
@@ -530,6 +532,15 @@ def delete_inventories(id):
     session['inventory_deleted'] = inventory.get_med_name()
 
     return redirect(url_for('medicine_storage'))
+
+@app.route('/supplier')
+def supplier():
+    return render_template('supplier.html')
+
+
+@app.route('/orderMed')
+def orderMed():
+    return render_template('orderMed.html')
 
 #Appointment [IC: Htet Lin]
 @app.route('/book_appointment', methods=['GET', 'POST'])# fix message flash
@@ -584,6 +595,11 @@ def appointment_id_generator():
         if appointment_id not in appointments_dict.keys():
             return appointment_id
 
+    
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('dummy.html'), 404
+    
 #Testing route
 @app.route('/testSite')
 def testSite():
